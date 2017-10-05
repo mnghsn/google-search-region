@@ -1,0 +1,41 @@
+{
+  "name": "google-search-region",
+  "version": "0.0.0",
+  "description": "A user script that lets you quickly switch Google search to different region.",
+  "author": {
+    "name": "Jimmy Lin",
+    "email": "jmlntw@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/jmlntw/google-search-region",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmlntw/google-search-region.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jmlntw/google-search-region/issues"
+  },
+  "scripts": {
+    "build:metajs": "inlinejs -o dist/google-search-region.meta.js src/meta.js",
+    "build:userjs": "inlinejs -o dist/google-search-region.user.js src/user.js",
+    "build": "npm run build:metajs & npm run build:userjs",
+    "test:lint": "standard src/**/*.js",
+    "test:build": "npm run build:metajs -- -n & npm run build:userjs -- -n",
+    "test": "npm run test:lint && npm run test:build"
+  },
+  "devDependencies": {
+    "indent-string": "^3.2.0",
+    "inline-js": "^0.5.0",
+    "standard": "^10.0.3",
+    "stringify-object": "^3.2.1"
+  },
+  "private": true,
+  "standard": {
+    "globals": [
+      "$inline",
+      "GM",
+      "GM_getValue",
+      "GM_setValue"
+    ]
+  }
+}
