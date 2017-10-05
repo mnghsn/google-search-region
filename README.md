@@ -22,8 +22,8 @@ _Argentina, Australia, Austria, Belgium (fr), Belgium (nl), Brazil, Bulgaria, Ca
 
 Install a user script manager such as [Greasemonkey](http://www.greasespot.net/) or [Tampermonkey](https://tampermonkey.net/) to your browser, then install this user script:
 
-* From **Greasy Fork**: <!-- TODO: Add Greasy Fork URL. -->
-* From **GitHub**: <!-- TODO: Add GitHub URL. -->
+* From **Greasy Fork**: <https://greasyfork.org/en/scripts/33780-google-search-region>
+* From **GitHub**: <https://raw.githubusercontent.com/jmlntw/google-search-region/master/dist/google-search-region.user.js>
 
 ## Changelog
 
