@@ -27,7 +27,8 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 
 ## Changelog
 
-<!-- TODO: Add changelog. -->
+* **v0.1.0** (2017-10-05)
+  * First release
 
 ## License
 
