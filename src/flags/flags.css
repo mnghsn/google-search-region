@@ -1,0 +1,243 @@
+/*!
+ * Generated with CSS Flag Sprite Generator <https://www.flag-sprites.com/>
+ *
+ * FAMFAMFAM Flag Icons <http://www.famfamfam.com/lab/icons/flags/>
+ * These flag icons are available for free use for any purpose with no
+ * requirement for attribution.
+ */
+
+.flag {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 16px;
+  height: 11px;
+  background: url('$inline("flags.png|dataurl:image/png")') no-repeat;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+.flag.flag-wt {
+  border: 1px dotted;
+  background-image: none !important;
+}
+
+.flag.flag-ar {
+  background-position: 0 0;
+}
+
+.flag.flag-at {
+  background-position: -16px 0;
+}
+
+.flag.flag-au {
+  background-position: -32px 0;
+}
+
+.flag.flag-be {
+  background-position: -48px 0;
+}
+
+.flag.flag-bg {
+  background-position: -64px 0;
+}
+
+.flag.flag-br {
+  background-position: -80px 0;
+}
+
+.flag.flag-ca {
+  background-position: -96px 0;
+}
+
+.flag.flag-ct {
+  background-position: -112px 0;
+}
+
+.flag.flag-ch {
+  background-position: 0 -11px;
+}
+
+.flag.flag-cl {
+  background-position: -16px -11px;
+}
+
+.flag.flag-cn {
+  background-position: -32px -11px;
+}
+
+.flag.flag-co {
+  background-position: -48px -11px;
+}
+
+.flag.flag-cz {
+  background-position: -64px -11px;
+}
+
+.flag.flag-de {
+  background-position: -80px -11px;
+}
+
+.flag.flag-dk {
+  background-position: -96px -11px;
+}
+
+.flag.flag-ee {
+  background-position: -112px -11px;
+}
+
+.flag.flag-es {
+  background-position: 0 -22px;
+}
+
+.flag.flag-fi {
+  background-position: -16px -22px;
+}
+
+.flag.flag-fr {
+  background-position: -32px -22px;
+}
+
+.flag.flag-gb {
+  background-position: -48px -22px;
+}
+
+.flag.flag-gr {
+  background-position: -64px -22px;
+}
+
+.flag.flag-hk {
+  background-position: -80px -22px;
+}
+
+.flag.flag-hr {
+  background-position: -96px -22px;
+}
+
+.flag.flag-hu {
+  background-position: -112px -22px;
+}
+
+.flag.flag-id {
+  background-position: 0 -33px;
+}
+
+.flag.flag-ie {
+  background-position: -16px -33px;
+}
+
+.flag.flag-il {
+  background-position: -32px -33px;
+}
+
+.flag.flag-in {
+  background-position: -48px -33px;
+}
+
+.flag.flag-it {
+  background-position: -64px -33px;
+}
+
+.flag.flag-jp {
+  background-position: -80px -33px;
+}
+
+.flag.flag-kr {
+  background-position: -96px -33px;
+}
+
+.flag.flag-lt {
+  background-position: -112px -33px;
+}
+
+.flag.flag-lv {
+  background-position: 0 -44px;
+}
+
+.flag.flag-mx {
+  background-position: -16px -44px;
+}
+
+.flag.flag-my {
+  background-position: -32px -44px;
+}
+
+.flag.flag-nl {
+  background-position: -48px -44px;
+}
+
+.flag.flag-no {
+  background-position: -64px -44px;
+}
+
+.flag.flag-nz {
+  background-position: -80px -44px;
+}
+
+.flag.flag-pe {
+  background-position: -96px -44px;
+}
+
+.flag.flag-ph {
+  background-position: -112px -44px;
+}
+
+.flag.flag-pl {
+  background-position: 0 -55px;
+}
+
+.flag.flag-pt {
+  background-position: -16px -55px;
+}
+
+.flag.flag-ro {
+  background-position: -32px -55px;
+}
+
+.flag.flag-ru {
+  background-position: -48px -55px;
+}
+
+.flag.flag-sa {
+  background-position: -64px -55px;
+}
+
+.flag.flag-se {
+  background-position: -80px -55px;
+}
+
+.flag.flag-sg {
+  background-position: -96px -55px;
+}
+
+.flag.flag-sk {
+  background-position: -112px -55px;
+}
+
+.flag.flag-sl {
+  background-position: 0 -66px;
+}
+
+.flag.flag-th {
+  background-position: -16px -66px;
+}
+
+.flag.flag-tr {
+  background-position: -32px -66px;
+}
+
+.flag.flag-tw {
+  background-position: -48px -66px;
+}
+
+.flag.flag-us {
+  background-position: -64px -66px;
+}
+
+.flag.flag-vn {
+  background-position: -80px -66px;
+}
+
+.flag.flag-za {
+  background-position: -96px -66px;
+}

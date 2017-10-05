@@ -1,0 +1,391 @@
+[
+  {
+    "id": "wt-wt",
+    "name": "All Regions",
+    "domain": "com"
+  },
+  {
+    "id": "ar-es",
+    "name": "Argentina",
+    "domain": "com.ar",
+    "lang": "es"
+  },
+  {
+    "id": "au-en",
+    "name": "Australia",
+    "domain": "com.au",
+    "lang": "en"
+  },
+  {
+    "id": "at-de",
+    "name": "Austria",
+    "domain": "at",
+    "lang": "de"
+  },
+  {
+    "id": "be-fr",
+    "name": "Belgium (fr)",
+    "domain": "be",
+    "lang": "fr"
+  },
+  {
+    "id": "be-nl",
+    "name": "Belgium (nl)",
+    "domain": "be",
+    "lang": "nl"
+  },
+  {
+    "id": "br-pt",
+    "name": "Brazil",
+    "domain": "com.br",
+    "lang": "pt"
+  },
+  {
+    "id": "bg-bg",
+    "name": "Bulgaria",
+    "domain": "bg",
+    "lang": "bg"
+  },
+  {
+    "id": "ca-en",
+    "name": "Canada",
+    "domain": "ca",
+    "lang": "en"
+  },
+  {
+    "id": "ca-fr",
+    "name": "Canada (fr)",
+    "domain": "ca",
+    "lang": "fr"
+  },
+  {
+    "id": "ct-ca",
+    "name": "Catalonia",
+    "domain": "cat",
+    "lang": "ca"
+  },
+  {
+    "id": "cl-es",
+    "name": "Chile",
+    "domain": "cl",
+    "lang": "es"
+  },
+  {
+    "id": "cn-zh",
+    "name": "China",
+    "domain": "com.hk",
+    "lang": "zh-cn"
+  },
+  {
+    "id": "co-es",
+    "name": "Colombia",
+    "domain": "com.co",
+    "lang": "es"
+  },
+  {
+    "id": "hr-hr",
+    "name": "Croatia",
+    "domain": "hr",
+    "lang": "hr"
+  },
+  {
+    "id": "cz-cs",
+    "name": "Czech Republic",
+    "domain": "cz",
+    "lang": "cs"
+  },
+  {
+    "id": "dk-da",
+    "name": "Denmark",
+    "domain": "dk",
+    "lang": "da"
+  },
+  {
+    "id": "ee-et",
+    "name": "Estonia",
+    "domain": "ee",
+    "lang": "et"
+  },
+  {
+    "id": "fi-fi",
+    "name": "Finland",
+    "domain": "fi",
+    "lang": "fi"
+  },
+  {
+    "id": "fr-fr",
+    "name": "France",
+    "domain": "fr",
+    "lang": "fr"
+  },
+  {
+    "id": "de-de",
+    "name": "Germany",
+    "domain": "de",
+    "lang": "de"
+  },
+  {
+    "id": "gr-el",
+    "name": "Greece",
+    "domain": "gr",
+    "lang": "el"
+  },
+  {
+    "id": "hk-zh",
+    "name": "Hong Kong",
+    "domain": "com.hk",
+    "lang": "zh-hk"
+  },
+  {
+    "id": "hu-hu",
+    "name": "Hungary",
+    "domain": "hu",
+    "lang": "hu"
+  },
+  {
+    "id": "in-en",
+    "name": "India",
+    "domain": "co.in",
+    "lang": "en"
+  },
+  {
+    "id": "id-id",
+    "name": "Indonesia",
+    "domain": "co.id",
+    "lang": "id"
+  },
+  {
+    "id": "id-en",
+    "name": "Indonesia (en)",
+    "domain": "co.id",
+    "lang": "en"
+  },
+  {
+    "id": "ie-en",
+    "name": "Ireland",
+    "domain": "ie",
+    "lang": "en"
+  },
+  {
+    "id": "il-he",
+    "name": "Israel",
+    "domain": "co.il",
+    "lang": "he"
+  },
+  {
+    "id": "it-it",
+    "name": "Italy",
+    "domain": "it",
+    "lang": "it"
+  },
+  {
+    "id": "jp-ja",
+    "name": "Japan",
+    "domain": "co.jp",
+    "lang": "ja"
+  },
+  {
+    "id": "kr-kr",
+    "name": "Korea",
+    "domain": "co.kr",
+    "lang": "kr"
+  },
+  {
+    "id": "lv-lv",
+    "name": "Latvia",
+    "domain": "lv",
+    "lang": "lv"
+  },
+  {
+    "id": "lt-lt",
+    "name": "Lithuania",
+    "domain": "lt",
+    "lang": "lt"
+  },
+  {
+    "id": "my-ms",
+    "name": "Malaysia",
+    "domain": "com.my",
+    "lang": "ms"
+  },
+  {
+    "id": "my-en",
+    "name": "Malaysia (en)",
+    "domain": "com.my",
+    "lang": "en"
+  },
+  {
+    "id": "mx-es",
+    "name": "Mexico",
+    "domain": "mx",
+    "lang": "es"
+  },
+  {
+    "id": "nl-nl",
+    "name": "Netherlands",
+    "domain": "nl",
+    "lang": "nl"
+  },
+  {
+    "id": "nz-en",
+    "name": "New Zealand",
+    "domain": "co.nz",
+    "lang": "en"
+  },
+  {
+    "id": "no-no",
+    "name": "Norway",
+    "domain": "no",
+    "lang": "no"
+  },
+  {
+    "id": "pe-es",
+    "name": "Peru",
+    "domain": "com.pe",
+    "lang": "es"
+  },
+  {
+    "id": "ph-en",
+    "name": "Philippines",
+    "domain": "com.ph",
+    "lang": "en"
+  },
+  {
+    "id": "ph-tl",
+    "name": "Philippines (tl)",
+    "domain": "com.ph",
+    "lang": "tl"
+  },
+  {
+    "id": "pl-pl",
+    "name": "Poland",
+    "domain": "pl",
+    "lang": "pl"
+  },
+  {
+    "id": "pt-pt",
+    "name": "Portugal",
+    "domain": "pt",
+    "lang": "pt"
+  },
+  {
+    "id": "ro-ro",
+    "name": "Romania",
+    "domain": "ro",
+    "lang": "ro"
+  },
+  {
+    "id": "ru-ru",
+    "name": "Russia",
+    "domain": "ru",
+    "lang": "ru"
+  },
+  {
+    "id": "sa-ar",
+    "name": "Saudi Arabia",
+    "domain": "com.sa",
+    "lang": "ar"
+  },
+  {
+    "id": "sg-en",
+    "name": "Singapore",
+    "domain": "com.sg",
+    "lang": "en"
+  },
+  {
+    "id": "sk-sk",
+    "name": "Slovakia",
+    "domain": "sk",
+    "lang": "sk"
+  },
+  {
+    "id": "sl-sl",
+    "name": "Slovenia",
+    "domain": "si",
+    "lang": "sl"
+  },
+  {
+    "id": "za-en",
+    "name": "South Africa",
+    "domain": "co.za",
+    "lang": "en"
+  },
+  {
+    "id": "es-es",
+    "name": "Spain",
+    "domain": "es",
+    "lang": "es"
+  },
+  {
+    "id": "es-ca",
+    "name": "Spain (ca)",
+    "domain": "es",
+    "lang": "ca"
+  },
+  {
+    "id": "se-sv",
+    "name": "Sweden",
+    "domain": "se",
+    "lang": "sv"
+  },
+  {
+    "id": "ch-de",
+    "name": "Switzerland (de)",
+    "domain": "ch",
+    "lang": "de"
+  },
+  {
+    "id": "ch-fr",
+    "name": "Switzerland (fr)",
+    "domain": "ch",
+    "lang": "fr"
+  },
+  {
+    "id": "ch-it",
+    "name": "Switzerland (it)",
+    "domain": "ch",
+    "lang": "it"
+  },
+  {
+    "id": "tw-zh",
+    "name": "Taiwan",
+    "domain": "com.tw",
+    "lang": "zh-tw"
+  },
+  {
+    "id": "th-th",
+    "name": "Thailand",
+    "domain": "co.th",
+    "lang": "th"
+  },
+  {
+    "id": "tr-tr",
+    "name": "Turkey",
+    "domain": "com.tr",
+    "lang": "tr"
+  },
+  {
+    "id": "gb-en",
+    "name": "United Kingdom",
+    "domain": "co.uk",
+    "lang": "en"
+  },
+  {
+    "id": "us-en",
+    "name": "United States",
+    "domain": "com",
+    "lang": "en"
+  },
+  {
+    "id": "us-es",
+    "name": "United States (es)",
+    "domain": "com",
+    "lang": "es"
+  },
+  {
+    "id": "vn-vi",
+    "name": "Vietnam",
+    "domain": "com.vn",
+    "lang": "vi"
+  }
+]
