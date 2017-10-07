@@ -377,9 +377,7 @@ class Menu {
    * Creates a new Menu class.
    */
   constructor () {
-    this.regions = new RegionSet(
-      $inline('data/regions.json|stringify|indent:4|trim')
-    )
+    this.regions = new RegionSet($inline('data/regions.json|stringify|indent:4|trim'))
 
     this.currentRegion = this.regions.current || this.regions.getByID('wt-wt')
 
