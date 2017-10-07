@@ -3,8 +3,8 @@ $inline('meta.js|trim')
 /**
  * Greasemonkey 4 API Polyfill
  *
- * This helper script bridges compatibility between the Greasemonkey 4 APIs and
- * existing/legacy APIs.
+ * This helper script bridges compatibility between the Greasemonkey 4 APIs and existing/legacy
+ * APIs.
  *
  * <https://arantius.com/misc/greasemonkey/imports/greasemonkey4-polyfill.js>
  */
@@ -28,7 +28,7 @@ function GM_addStyle (css) {
 // eslint-disable-next-line camelcase
 GM.addStyle = GM_addStyle
 
-// -----------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 
 /**
  * Lodash-Like Utility Library
@@ -37,8 +37,7 @@ GM.addStyle = GM_addStyle
  */
 class LodashLike {
   /**
-   * Iterates over elements of array, returning the first element `predicate`
-   * returns truthy for.
+   * Iterates over elements of array, returning the first element `predicate` returns truthy for.
    * @static
    * @param {Array} array The array to inspect.
    * @param {Object} predicate The object to match per iteration.
@@ -46,14 +45,11 @@ class LodashLike {
    */
   static find (array, predicate) {
     array = Array.isArray(array) ? array : Array.from(array)
-    return array.find(value => {
-      return Object.keys(predicate).every(key => predicate[key] === value[key])
-    })
+    return array.find(value => Object.keys(predicate).every(key => predicate[key] === value[key]))
   }
 
   /**
-   * Creates a function that invokes `func` with `partials` prepended to the
-   * arguments it receives.
+   * Creates a function that invokes `func` with `partials` prepended to the arguments it receives.
    * @static
    * @param {Function} func The function to partially apply arguments to.
    * @param {...*} [partials] The arguments to be partially applied.
@@ -91,8 +87,8 @@ class LodashLike {
   }
 
   /**
-   * Creates a duplicate-free version of an array, in which only the first
-   * occurrence of each element is kept.
+   * Creates a duplicate-free version of an array, in which only the first occurrence of each
+   * element is kept.
    * @static
    * @param {Array} array The array to inspect.
    * @return {Array} Returns the new duplicate free array.
@@ -106,7 +102,7 @@ class LodashLike {
 // Add a global shortcut to `LodashLike`.
 const _ = LodashLike
 
-// -----------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 
 /**
  * jQuery-Like DOM Manipulation Library
@@ -116,14 +112,12 @@ const _ = LodashLike
 class JQueryLike {
   /**
    * Returns a collection of matched elements.
-   * @param {(string|Element)} selector A string containing a selector
-   * expression, or DOM element to wrap in a JQueryLike object.
+   * @param {(string|Element)} selector A string containing a selector expression, or DOM element to
+   * wrap in a JQueryLike object.
    * @param {Element} [context=document] A DOM element to use as context.
    */
   constructor (selector, context = document) {
-    let elements = typeof selector === 'string'
-      ? context.querySelectorAll(selector)
-      : [selector]
+    let elements = typeof selector === 'string' ? context.querySelectorAll(selector) : [selector]
     this.length = elements.length
     Object.assign(this, elements)
   }
@@ -139,8 +133,7 @@ class JQueryLike {
   }
 
   /**
-   * Inserts content, specified by the parameter, after each element in the set
-   * of matched elements.
+   * Inserts content, specified by the parameter, after each element in the set of matched elements.
    * @param {string} content A HTML string to insert.
    * @return {JQueryLike}
    */
@@ -150,8 +143,8 @@ class JQueryLike {
   }
 
   /**
-   * Inserts content, specified by the parameter, to the beginning of each
-   * element in the set of matched elements.
+   * Inserts content, specified by the parameter, to the beginning of each element in the set of
+   * matched elements.
    * @param {string} content A HTML string to insert.
    * @return {JQueryLike}
    */
@@ -164,8 +157,7 @@ class JQueryLike {
    * Gets or sets the value of an attribute for the set of matched elements.
    * @param {string} name The attribute name to get or set.
    * @param {string} [value] The attribute value to set.
-   * @return {(JQueryLike|string)} Returns attribute value if `value` is `null`
-   * or omitted.
+   * @return {(JQueryLike|string)} Returns attribute value if `value` is `null` or omitted.
    */
   attr (name, value) {
     if (value) {
@@ -177,8 +169,7 @@ class JQueryLike {
   }
 
   /**
-   * Determines whether any of the matched elements are assigned the given
-   * class.
+   * Determines whether any of the matched elements are assigned the given class.
    * @param {string} name The class name to search for.
    * @return {boolean} Returns true if the class name is assigned to element.
    */
@@ -201,8 +192,7 @@ class JQueryLike {
    */
   toggle () {
     this.each(element => {
-      const style = window.getComputedStyle(element)
-      const display = style.getPropertyValue('display')
+      const display = window.getComputedStyle(element).getPropertyValue('display')
       element.style.display = display !== 'none' ? 'none' : 'inherit'
     })
     return this
@@ -211,12 +201,10 @@ class JQueryLike {
   /**
    * Attaches an event handler function for an event to the selected elements.
    * @param {string} event The event type such as "click".
-   * @param {string} [selector] A selector string to filter the descendants of
-   * the selected elements that trigger the event. If the selector is `null` or
-   * omitted, the event is always triggered when it reaches the selected
-   * element.
-   * @param {Function(Object)} handler A function to execute when the event os
-   * triggered.
+   * @param {string} [selector] A selector string to filter the descendants of the selected elements
+   * that trigger the event. If the selector is `null` or omitted, the event is always triggered
+   * when it reaches the selected element.
+   * @param {Function(Object)} handler A function to execute when the event is triggered.
    * @return {JQueryLike}
    */
   on (event, selector = null, handler) {
@@ -234,7 +222,7 @@ class JQueryLike {
 // Add a global shortcut to `JQueryLike`.
 const $ = (...args) => new JQueryLike(...args)
 
-// -----------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 
 /**
  * User Script Storage Library
@@ -246,8 +234,8 @@ class ScriptStorage {
    * Gets stored value using GM API, parsing it to JavaScript value or object.
    * @static
    * @param {string} name The property name to get.
-   * @param {*} [def] Any value to be returned when no value has previously been
-   * set, or previous value is not valid JSON.
+   * @param {*} [def] Any value to be returned when no value has previously been set, or previous
+   * value is not valid JSON.
    * @return {Promise(*)} Returns a `Promise` object with stored value.
    */
   static getValue (name, def) {
@@ -272,7 +260,7 @@ class ScriptStorage {
   }
 }
 
-// -----------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 
 /**
  * Search Region Data Set
@@ -332,8 +320,7 @@ class RegionSet {
 /**
  * Single Search Region Data
  *
- * Stores a single search region data, including id, name, domain and language
- * parameter.
+ * Stores a single search region data, including id, name, domain and language parameter.
  */
 class Region {
   /**
@@ -364,10 +351,7 @@ class Region {
     const lang = this.lang
 
     // Replace domain.
-    url.hostname = url.hostname.replace(
-      /^(.+)\.google\.([A-z.]+)(.*)$/i,
-      `$1.google.${domain}$3`
-    )
+    url.hostname = url.hostname.replace(/^(.+)\.google\.([A-z.]+)(.*)$/i, `$1.google.${domain}$3`)
 
     // Set language parameter if any.
     lang ? url.searchParams.set('hl', lang) : url.searchParams.delete('hl')
@@ -380,13 +364,12 @@ class Region {
   }
 }
 
-// -----------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 
 /**
  * Search Region Menu Class
  *
- * The main class of this user script. Initializes the region menu and inserts
- * it to the page.
+ * The main class of this user script. Initializes the region menu and inserts it to the page.
  */
 class Menu {
   /**
@@ -524,9 +507,7 @@ class Menu {
     const itemClassList = [this.classMap.menuItem]
     const linkClassList = [this.classMap.menuLink]
     const inlineStyle = togglable ? ['display:none'] : []
-    const tooltip = removable
-      ? `Press Shift+Click to remove this item.`
-      : `Domain: ${domain}\nLanguage: ${lang}`
+    const tooltip = removable ? `Press Shift+Click to remove this item.` : `Domain: ${domain}\nLanguage: ${lang}`
 
     if (selected) {
       return `
