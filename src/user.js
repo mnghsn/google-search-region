@@ -207,8 +207,9 @@ class JQueryLike {
    * @param {Function(Object)} handler A function to execute when the event is triggered.
    * @return {JQueryLike}
    */
-  on (event, selector = null, handler) {
-    if (selector === null) {
+  on (event, selector, handler) {
+    if (handler === null) {
+      handler = selector
       this.each(element => element.addEventListener(event, handler))
     } else {
       this.each(element => element.addEventListener(event, event => {
