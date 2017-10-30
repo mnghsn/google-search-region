@@ -622,7 +622,7 @@ class Menu {
       .${this.classMap.menuList} { max-height: 60vh; overflow-y: auto }
     `)
     GM_addStyle(`
-      $inline('flags/flags.css|cssmin|indent:6|trim')
+      $inline('css/flags.css|cssmin|indent:6|trim')
     `)
   }
 }
