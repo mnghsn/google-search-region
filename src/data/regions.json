@@ -8,384 +8,448 @@
     "id": "ar-es",
     "name": "Argentina",
     "domain": "com.ar",
+    "country": "ar",
     "lang": "es"
   },
   {
     "id": "au-en",
     "name": "Australia",
     "domain": "com.au",
+    "country": "au",
     "lang": "en"
   },
   {
     "id": "at-de",
     "name": "Austria",
     "domain": "at",
+    "country": "at",
     "lang": "de"
   },
   {
     "id": "be-fr",
     "name": "Belgium (fr)",
     "domain": "be",
+    "country": "be",
     "lang": "fr"
   },
   {
     "id": "be-nl",
     "name": "Belgium (nl)",
     "domain": "be",
+    "country": "be",
     "lang": "nl"
   },
   {
     "id": "br-pt",
     "name": "Brazil",
     "domain": "com.br",
+    "country": "br",
     "lang": "pt"
   },
   {
     "id": "bg-bg",
     "name": "Bulgaria",
     "domain": "bg",
+    "country": "bg",
     "lang": "bg"
   },
   {
     "id": "ca-en",
     "name": "Canada",
     "domain": "ca",
+    "country": "ca",
     "lang": "en"
   },
   {
     "id": "ca-fr",
     "name": "Canada (fr)",
     "domain": "ca",
+    "country": "ca",
     "lang": "fr"
   },
   {
     "id": "ct-ca",
     "name": "Catalonia",
     "domain": "cat",
+    "country": "ct",
     "lang": "ca"
   },
   {
     "id": "cl-es",
     "name": "Chile",
     "domain": "cl",
+    "country": "cl",
     "lang": "es"
   },
   {
     "id": "cn-zh",
     "name": "China",
     "domain": "com.hk",
+    "country": "cn",
     "lang": "zh-cn"
   },
   {
     "id": "co-es",
     "name": "Colombia",
     "domain": "com.co",
+    "country": "co",
     "lang": "es"
   },
   {
     "id": "hr-hr",
     "name": "Croatia",
     "domain": "hr",
+    "country": "hr",
     "lang": "hr"
   },
   {
     "id": "cz-cs",
     "name": "Czech Republic",
     "domain": "cz",
+    "country": "cz",
     "lang": "cs"
   },
   {
     "id": "dk-da",
     "name": "Denmark",
     "domain": "dk",
+    "country": "dk",
     "lang": "da"
   },
   {
     "id": "ee-et",
     "name": "Estonia",
     "domain": "ee",
+    "country": "ee",
     "lang": "et"
   },
   {
     "id": "fi-fi",
     "name": "Finland",
     "domain": "fi",
+    "country": "fi",
     "lang": "fi"
   },
   {
     "id": "fr-fr",
     "name": "France",
     "domain": "fr",
+    "country": "fr",
     "lang": "fr"
   },
   {
     "id": "de-de",
     "name": "Germany",
     "domain": "de",
+    "country": "de",
     "lang": "de"
   },
   {
     "id": "gr-el",
     "name": "Greece",
     "domain": "gr",
+    "country": "gr",
     "lang": "el"
   },
   {
     "id": "hk-zh",
     "name": "Hong Kong",
     "domain": "com.hk",
+    "country": "hk",
     "lang": "zh-hk"
   },
   {
     "id": "hu-hu",
     "name": "Hungary",
     "domain": "hu",
+    "country": "hu",
     "lang": "hu"
   },
   {
     "id": "in-en",
     "name": "India",
     "domain": "co.in",
+    "country": "in",
     "lang": "en"
   },
   {
     "id": "id-id",
     "name": "Indonesia",
     "domain": "co.id",
+    "country": "id",
     "lang": "id"
   },
   {
     "id": "id-en",
     "name": "Indonesia (en)",
     "domain": "co.id",
+    "country": "id",
     "lang": "en"
   },
   {
     "id": "ie-en",
     "name": "Ireland",
     "domain": "ie",
+    "country": "ie",
     "lang": "en"
   },
   {
     "id": "il-he",
     "name": "Israel",
     "domain": "co.il",
+    "country": "il",
     "lang": "he"
   },
   {
     "id": "it-it",
     "name": "Italy",
     "domain": "it",
+    "country": "it",
     "lang": "it"
   },
   {
     "id": "jp-ja",
     "name": "Japan",
     "domain": "co.jp",
+    "country": "jp",
     "lang": "ja"
   },
   {
     "id": "kr-kr",
     "name": "Korea",
     "domain": "co.kr",
+    "country": "kr",
     "lang": "kr"
   },
   {
     "id": "lv-lv",
     "name": "Latvia",
     "domain": "lv",
+    "country": "lv",
     "lang": "lv"
   },
   {
     "id": "lt-lt",
     "name": "Lithuania",
     "domain": "lt",
+    "country": "lt",
     "lang": "lt"
   },
   {
     "id": "my-ms",
     "name": "Malaysia",
     "domain": "com.my",
+    "country": "my",
     "lang": "ms"
   },
   {
     "id": "my-en",
     "name": "Malaysia (en)",
     "domain": "com.my",
+    "country": "my",
     "lang": "en"
   },
   {
     "id": "mx-es",
     "name": "Mexico",
     "domain": "mx",
+    "country": "mx",
     "lang": "es"
   },
   {
     "id": "nl-nl",
     "name": "Netherlands",
     "domain": "nl",
+    "country": "nl",
     "lang": "nl"
   },
   {
     "id": "nz-en",
     "name": "New Zealand",
     "domain": "co.nz",
+    "country": "nz",
     "lang": "en"
   },
   {
     "id": "no-no",
     "name": "Norway",
     "domain": "no",
+    "country": "no",
     "lang": "no"
   },
   {
     "id": "pe-es",
     "name": "Peru",
     "domain": "com.pe",
+    "country": "pe",
     "lang": "es"
   },
   {
     "id": "ph-en",
     "name": "Philippines",
     "domain": "com.ph",
+    "country": "ph",
     "lang": "en"
   },
   {
     "id": "ph-tl",
     "name": "Philippines (tl)",
     "domain": "com.ph",
+    "country": "ph",
     "lang": "tl"
   },
   {
     "id": "pl-pl",
     "name": "Poland",
     "domain": "pl",
+    "country": "pl",
     "lang": "pl"
   },
   {
     "id": "pt-pt",
     "name": "Portugal",
     "domain": "pt",
+    "country": "pt",
     "lang": "pt"
   },
   {
     "id": "ro-ro",
     "name": "Romania",
     "domain": "ro",
+    "country": "ro",
     "lang": "ro"
   },
   {
     "id": "ru-ru",
     "name": "Russia",
     "domain": "ru",
+    "country": "ru",
     "lang": "ru"
   },
   {
     "id": "sa-ar",
     "name": "Saudi Arabia",
     "domain": "com.sa",
+    "country": "sa",
     "lang": "ar"
   },
   {
     "id": "sg-en",
     "name": "Singapore",
     "domain": "com.sg",
+    "country": "sg",
     "lang": "en"
   },
   {
     "id": "sk-sk",
     "name": "Slovakia",
     "domain": "sk",
+    "country": "sk",
     "lang": "sk"
   },
   {
     "id": "sl-sl",
     "name": "Slovenia",
     "domain": "si",
+    "country": "sl",
     "lang": "sl"
   },
   {
     "id": "za-en",
     "name": "South Africa",
     "domain": "co.za",
+    "country": "za",
     "lang": "en"
   },
   {
     "id": "es-es",
     "name": "Spain",
     "domain": "es",
+    "country": "es",
     "lang": "es"
   },
   {
     "id": "es-ca",
     "name": "Spain (ca)",
     "domain": "es",
+    "country": "es",
     "lang": "ca"
   },
   {
     "id": "se-sv",
     "name": "Sweden",
     "domain": "se",
+    "country": "se",
     "lang": "sv"
   },
   {
     "id": "ch-de",
     "name": "Switzerland (de)",
     "domain": "ch",
+    "country": "ch",
     "lang": "de"
   },
   {
     "id": "ch-fr",
     "name": "Switzerland (fr)",
     "domain": "ch",
+    "country": "ch",
     "lang": "fr"
   },
   {
     "id": "ch-it",
     "name": "Switzerland (it)",
     "domain": "ch",
+    "country": "ch",
     "lang": "it"
   },
   {
     "id": "tw-zh",
     "name": "Taiwan",
     "domain": "com.tw",
+    "country": "tw",
     "lang": "zh-tw"
   },
   {
     "id": "th-th",
     "name": "Thailand",
     "domain": "co.th",
+    "country": "th",
     "lang": "th"
   },
   {
     "id": "tr-tr",
     "name": "Turkey",
     "domain": "com.tr",
+    "country": "tr",
     "lang": "tr"
   },
   {
     "id": "gb-en",
     "name": "United Kingdom",
     "domain": "co.uk",
+    "country": "gb",
     "lang": "en"
   },
   {
     "id": "us-en",
     "name": "United States",
     "domain": "com",
+    "country": "us",
     "lang": "en"
   },
   {
     "id": "us-es",
     "name": "United States (es)",
     "domain": "com",
+    "country": "us",
     "lang": "es"
   },
   {
     "id": "vn-vi",
     "name": "Vietnam",
     "domain": "com.vn",
+    "country": "vn",
     "lang": "vi"
   }
 ]
