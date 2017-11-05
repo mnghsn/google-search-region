@@ -1,0 +1,14 @@
+{
+  "setTLD": true,
+  "setHl": true,
+  "setGl": true,
+  "setCr": false,
+  "setLr": false,
+  "showFlags": true,
+  "userRegions": [
+    "wt-wt",
+    "jp-ja",
+    "tw-zh",
+    "us-en"
+  ]
+}
