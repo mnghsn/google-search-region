@@ -1,13 +1,8 @@
 $inline('meta.js|trim')
 
-/**
- * Greasemonkey 4 API Polyfill
- *
- * This helper script bridges compatibility between the Greasemonkey 4 APIs and existing/legacy
- * APIs.
- *
- * <https://arantius.com/misc/greasemonkey/imports/greasemonkey4-polyfill.js>
- */
+// =============================================================================
+// Add compatibility between the Greasemonkey 4 APIs and existing/legacy APIs.
+// =============================================================================
 
 if (typeof GM === 'undefined') {
   // eslint-disable-next-line no-global-assign
@@ -28,603 +23,410 @@ function GM_addStyle (css) {
 // eslint-disable-next-line camelcase
 GM.addStyle = GM_addStyle
 
-// -------------------------------------------------------------------------------------------------
+// =============================================================================
+// Helper Functions
+// =============================================================================
 
 /**
- * Lodash-Like Utility Library
- *
- * Uses ES6 features to implement a few similar methods to Lodash.
+ * @param {string} selector
+ * @param {Element} [context]
+ * @return {Element}
  */
-class LodashLike {
-  /**
-   * Iterates over elements of array, returning the first element `predicate` returns truthy for.
-   * @static
-   * @param {Array} array The array to inspect.
-   * @param {Object} predicate The object to match per iteration.
-   * @return {*} Returns the matched element, else `undefined`.
-   */
-  static find (array, predicate) {
-    array = Array.isArray(array) ? array : Array.from(array)
-    return array.find(value => Object.keys(predicate).every(key => predicate[key] === value[key]))
+function $ (selector, context) {
+  return (context || document).querySelector(selector)
+}
+
+/**
+ * @param {string} selector
+ * @param {Element} [context]
+ * @return {NodeListOf<Element>}
+ */
+function $$ (selector, context) {
+  return (context || document).querySelectorAll(selector)
+}
+
+/**
+ * @param {Element} target
+ * @param {string} type
+ * @param {EventListener} callback
+ * @param {boolean} [useCapture]
+ */
+function $on (target, type, callback, useCapture) {
+  target.addEventListener(type, callback, !!useCapture)
+}
+
+/**
+ * @param {Element} target
+ * @param {string} selector
+ * @param {string} type
+ * @param {EventListener} callback
+ */
+function $delegate (target, selector, type, callback) {
+  const useCapture = (type === 'blur') || (type === 'focus')
+  const dispatchEvent = function dispatchEvent (event) {
+    if (event.target.matches(selector)) { callback.call(event.target, event) }
   }
 
-  /**
-   * Creates a function that invokes `func` with `partials` prepended to the arguments it receives.
-   * @static
-   * @param {Function} func The function to partially apply arguments to.
-   * @param {...*} [partials] The arguments to be partially applied.
-   * @return {Function} Returns the new partially applied function.
-   */
-  static partial (func, ...partials) {
-    return (...args) => func(...partials, ...args)
+  $on(target, type, dispatchEvent, useCapture)
+}
+
+if (window.NodeList && !window.NodeList.prototype.forEach) {
+  window.NodeList.prototype.forEach = Array.prototype.forEach
+}
+
+// =============================================================================
+// Template Engine
+// =============================================================================
+
+/**
+ * @param {string} text
+ * @param {Object} data
+ * @return {string}
+ */
+function renderTemplate (text, data) {
+  const matcher = /<%-([\s\S]+?)%>|<%=([\s\S]+?)%>|<%([\s\S]+?)%>|$/g
+  const escapeChar = function escapeChar (text) {
+    return text
+      .replace(/\\/g, '\\\\')
+      .replace(/'/g, "\\'")
+      .replace(/\r/g, '\\r')
+      .replace(/\n/g, '\\n')
+      .replace(/\u2028/g, '\\u2028')
+      .replace(/\u2029/g, '\\u2029')
+  }
+  const escape = function escape (text) {
+    return ('' + text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;')
+      .replace(/`/g, '&#x60;')
   }
 
-  /**
-   * Removes all given values from `array`.
-   * @param {Array} array The array to modify.
-   * @param {...*} values The values to remove.
-   * @return {Array} Returns array.
-   */
-  static pull (array, ...values) {
-    array = Array.isArray(array) ? array : Array.from(array)
-    values.forEach(value => {
-      const index = array.indexOf(value)
-      if (index !== -1) array.splice(index, 1)
-    })
-    return array
-  }
+  let index = 0
+  let source = "__p += '"
 
-  /**
-   * Creates a slice of `array` with `n` elements taken from the beginning.
-   * @static
-   * @param {Array} array The array to query.
-   * @param {number} [n=1] The number of elements to take.
-   * @return {Array} Returns the slice of `array`.
-   */
-  static take (array, n) {
-    array = Array.isArray(array) ? array : Array.from(array)
-    return array.slice(0, n < 0 ? 0 : n)
-  }
+  text.replace(matcher, (match, escape, interpolate, evaluate, offset) => {
+    source += escapeChar(text.slice(index, offset))
+    index = offset + match.length
+    if (escape) {
+      source += `' + ((__t = (${escape})) == null ? '' : escape(__t)) + '`
+    } else if (interpolate) {
+      source += `' + ((__t = (${interpolate})) == null ? '' : __t) + '`
+    } else if (evaluate) {
+      source += `'; ${evaluate} __p += '`
+    }
+    return match
+  })
 
-  /**
-   * Creates a duplicate-free version of an array, in which only the first occurrence of each
-   * element is kept.
-   * @static
-   * @param {Array} array The array to inspect.
-   * @return {Array} Returns the new duplicate free array.
-   */
-  static uniq (array) {
-    array = Array.isArray(array) ? array : Array.from(array)
-    return array.filter((value, index, self) => self.indexOf(value) === index)
+  source += "';"
+  source = `
+    let __t, __p = '';
+    const __j = Array.prototype.join;
+    const print = function print () { __p += __j.call(arguments, ''); };
+    with (data || {}) { ${source} }
+    return __p;
+  `
+
+  try {
+    // eslint-disable-next-line no-new-func
+    return new Function('data', 'escape', source).call(this, data, escape)
+  } catch (err) {
+    err.source = source
+    throw err
   }
 }
 
-// Add a global shortcut to `LodashLike`.
-const _ = LodashLike
-
-// -------------------------------------------------------------------------------------------------
+// =============================================================================
+// User Script Configuration
+// =============================================================================
 
 /**
- * jQuery-Like DOM Manipulation Library
- *
- * Uses ES6 features to implement a few similar methods to jQuery.
+ * @typedef {Object} Config
+ * @property {boolean} setTLD
+ * @property {boolean} setHl
+ * @property {boolean} setGl
+ * @property {boolean} setCr
+ * @property {boolean} setLr
+ * @property {Array<string>} userRegions
  */
-class JQueryLike {
-  /**
-   * Returns a collection of matched elements.
-   * @param {(string|Element)} selector A string containing a selector expression, or DOM element to
-   * wrap in a JQueryLike object.
-   * @param {Element} [context=document] A DOM element to use as context.
-   */
-  constructor (selector, context = document) {
-    let elements = typeof selector === 'string' ? context.querySelectorAll(selector) : [selector]
-    this.length = elements.length
-    Object.assign(this, elements)
-  }
 
-  /**
-   * Iterates over a JQueryLike object, executing a function for each element.
-   * @param {Function(Element)} iteratee A function to execute for each element.
-   * @return {JQueryLike}
-   */
-  each (iteratee) {
-    Array.from(this).forEach(iteratee)
-    return this
-  }
+/**
+ * @type {Config}
+ */
+const config = Object.seal($inline('data:config'))
 
-  /**
-   * Inserts content, specified by the parameter, after each element in the set of matched elements.
-   * @param {string} content A HTML string to insert.
-   * @return {JQueryLike}
-   */
-  after (content) {
-    this.each(element => element.insertAdjacentHTML('afterend', content))
-    return this
-  }
-
-  /**
-   * Inserts content, specified by the parameter, to the beginning of each element in the set of
-   * matched elements.
-   * @param {string} content A HTML string to insert.
-   * @return {JQueryLike}
-   */
-  prepend (content) {
-    this.each(element => element.insertAdjacentHTML('afterbegin', content))
-    return this
-  }
-
-  /**
-   * Gets or sets the value of an attribute for the set of matched elements.
-   * @param {string} name The attribute name to get or set.
-   * @param {string} [value] The attribute value to set.
-   * @return {(JQueryLike|string)} Returns attribute value if `value` is `null` or omitted.
-   */
-  attr (name, value) {
-    if (value) {
-      this.each(element => element.setAttribute(name, value))
-      return this
-    } else {
-      return this[0].getAttribute(name)
-    }
-  }
-
-  /**
-   * Determines whether any of the matched elements are assigned the given class.
-   * @param {string} name The class name to search for.
-   * @return {boolean} Returns true if the class name is assigned to element.
-   */
-  hasClass (name) {
-    return this[0].classList.contains(name)
-  }
-
-  /**
-   * Removes the set of matched elements from the DOM.
-   * @return {JQueryLike}
-   */
-  remove () {
-    this.each(element => element.parentNode.removeChild(element))
-    return this
-  }
-
-  /**
-   * Displays or hides the matched elements.
-   * @return {JQueryLike}
-   */
-  toggle () {
-    this.each(element => {
-      const display = window.getComputedStyle(element).getPropertyValue('display')
-      element.style.display = display !== 'none' ? 'none' : 'inherit'
+/**
+ * @return {Promise<Config>}
+ */
+function loadConfig () {
+  return GM.getValue('config')
+    .then(value => {
+      try { return JSON.parse(value) } catch (err) { return {} }
     })
-    return this
-  }
-
-  /**
-   * Attaches an event handler function for an event to the selected elements.
-   * @param {string} event The event type such as "click".
-   * @param {string} [selector] A selector string to filter the descendants of the selected elements
-   * that trigger the event. If the selector is `null` or omitted, the event is always triggered
-   * when it reaches the selected element.
-   * @param {Function(Object)} handler A function to execute when the event is triggered.
-   * @return {JQueryLike}
-   */
-  on (event, selector, handler) {
-    if (handler === null) {
-      handler = selector
-      this.each(element => element.addEventListener(event, handler))
-    } else {
-      this.each(element => element.addEventListener(event, event => {
-        if (event.target.matches(selector)) handler.call(this, event)
-      }))
-    }
-    return this
-  }
+    .then(value => {
+      return Object.assign(config, value)
+    })
 }
 
-// Add a global shortcut to `JQueryLike`.
-const $ = (...args) => new JQueryLike(...args)
+/**
+ * @return {Promise<Config>}
+ */
+function saveConfig () {
+  return GM.setValue('config', JSON.stringify(config))
+}
 
-// -------------------------------------------------------------------------------------------------
+// =============================================================================
+// Search Regions
+// =============================================================================
 
 /**
- * User Script Storage Library
- *
- * Allows JSON data to be persisted easily by user script.
+ * @typedef {Object} Region
+ * @property {string} id
+ * @property {string} name
+ * @property {string} [tld]
+ * @property {string} [country]
+ * @property {string} [lang]
  */
-class ScriptStorage {
-  /**
-   * Gets stored value using GM API, parsing it to JavaScript value or object.
-   * @static
-   * @param {string} name The property name to get.
-   * @param {*} [def] Any value to be returned when no value has previously been set, or previous
-   * value is not valid JSON.
-   * @return {Promise(*)} Returns a `Promise` object with stored value.
-   */
-  static getValue (name, def) {
-    return GM.getValue(name, null).then(value => {
-      try {
-        return value !== null ? JSON.parse(value) : def
-      } catch (err) {
-        return def
+
+/**
+ * @type {ReadonlyArray<Region>}
+ */
+const regions = Object.freeze($inline('data:regions'))
+
+/**
+ * @param {Object} predicate
+ * @return {Region}
+ */
+function findRegion (predicate) {
+  return regions.find(region => {
+    return Object.keys(predicate).every(key => {
+      return predicate[key] === region[key]
+    })
+  })
+}
+
+/**
+ * @param {string} regionID
+ * @return {Region}
+ */
+function getRegionByID (regionID) {
+  return findRegion({ id: regionID })
+}
+
+const urlRegExp = {
+  tld: /^www\.google\.([\w.]+)$/i,
+  lang: /^(\w+)-(\w+)$/i,
+  cr: /^country(\w+)$/i,
+  lr: /^lang_([\w-]+)$/i
+}
+
+/**
+ * @return {Region}
+ */
+function getCurrentRegion () {
+  const { hostname, searchParams } = new window.URL(window.location.href)
+  const { setTLD, setHl, setGl, setCr, setLr } = config
+  const predicate = {}
+
+  if (setTLD && urlRegExp.tld.test(hostname)) {
+    predicate.tld = hostname.replace(urlRegExp.tld, '$1')
+  }
+  if (setHl && searchParams.has('hl')) {
+    predicate.lang = searchParams.get('hl')
+  }
+  if (setGl && searchParams.has('gl')) {
+    predicate.country = searchParams.get('gl')
+  }
+  if (setCr && searchParams.has('cr')) {
+    predicate.country = searchParams.get('cr').replace(urlRegExp.cr, '$1')
+  }
+  if (setLr && searchParams.has('lr')) {
+    predicate.lang = searchParams.get('lr').replace(urlRegExp.lr, '$1')
+  }
+
+  for (let prop in predicate) {
+    predicate[prop] = predicate[prop].toLowerCase()
+  }
+
+  return findRegion(predicate)
+}
+
+/**
+ * @type {ReadonlyArray<string>}
+ */
+const delParams = Object.freeze($inline('data:del-params'))
+
+/**
+ * @param {Region} region
+ * @return {string}
+ */
+function getSearchURL (region) {
+  const url = new window.URL(window.location.href)
+  const { hostname, searchParams } = url
+  const { setTLD, setHl, setGl, setCr, setLr } = config
+  const { tld, country, lang } = region
+
+  if (setTLD && tld) {
+    url.hostname = hostname.replace(urlRegExp.tld, `www.google.${tld}`)
+  } else {
+    url.hostname = hostname.replace(urlRegExp.tld, 'www.google.com')
+  }
+  if (setHl && lang) {
+    searchParams.set('hl', lang)
+  } else {
+    searchParams.delete('hl')
+  }
+  if (setGl && country) {
+    searchParams.set('gl', country)
+  } else {
+    searchParams.delete('gl')
+  }
+  if (setCr && country) {
+    searchParams.set('cr', `country${country.toUpperCase()}`)
+  } else {
+    searchParams.delete('cr')
+  }
+  if (setLr && lang) {
+    const lr = lang.replace(urlRegExp.lang, (match, p1, p2) => {
+      return `lang_${p1.toLowerCase()}-${p2.toUpperCase()}`
+    })
+    searchParams.set('lr', lr)
+  } else {
+    searchParams.delete('lr')
+  }
+
+  delParams.forEach(param => {
+    searchParams.delete(param)
+  })
+
+  return url.toString()
+}
+
+// =============================================================================
+// User Interface
+// =============================================================================
+
+/**
+ * @param {Element} target
+ */
+function createMenu (target) {
+  const currentRegion = getCurrentRegion()
+  const data = { config, regions, getRegionByID, getSearchURL, currentRegion }
+  const template = `
+    $inline('template:menu,4')
+  `
+  const html = renderTemplate(template, data)
+
+  target.insertAdjacentHTML('afterend', html)
+}
+
+/**
+ * @param {Element} target
+ */
+function createModal (target) {
+  const data = { config, regions }
+  const template = `
+    $inline('template:modal,4')
+  `
+  const html = renderTemplate(template, data)
+
+  target.insertAdjacentHTML('beforeend', html)
+}
+
+/**
+ * @return {Promise<void>}
+ */
+function delegateEvents () {
+  const body = document.body
+  const events = {}
+
+  events.showModal = function showModal (event) {
+    const modal = $('.gsr-modal')
+    if (modal) { modal.style.display = null } else { createModal(body) }
+  }
+
+  events.hideModal = function hideModal (event) {
+    const modal = $('.gsr-modal')
+    if (modal) { modal.style.display = 'none' }
+  }
+
+  events.save = function save (event) {
+    const modal = $('.gsr-modal')
+    const controls = $$('[data-gsr-config]', modal)
+    const pending = {}
+
+    controls.forEach(control => {
+      const attr = control.getAttribute('data-gsr-config').split(':')
+      const [type, name, value] = attr
+
+      switch (type.toLowerCase()) {
+        case 'boolean':
+          pending[name] = control.checked
+          break
+        case 'array':
+          if (control.checked) {
+            if (!Array.isArray(pending[name])) { pending[name] = [] }
+            pending[name].push(value)
+          }
+          break
+        default:
+          break
       }
     })
+
+    Object.assign(config, pending)
+
+    saveConfig().then(() => {
+      window.location.reload()
+    })
   }
 
-  /**
-   * Converts value to JSON string, persisting it using GM API.
-   * @static
-   * @param {string} name The property name to set.
-   * @param {*} value Any JSON-able value to persist.
-   * @return {Promise} Returns a `Promise` object.
-   */
-  static setValue (name, value) {
-    return GM.setValue(name, JSON.stringify(value))
-  }
-}
+  $delegate(body, '[data-gsr-onclick]', 'click', event => {
+    const name = event.target.getAttribute('data-gsr-onclick')
+    const callback = events[name]
+    if (callback) { callback.call(event.target, event) }
+  })
 
-// -------------------------------------------------------------------------------------------------
-
-/**
- * Search Region Data Set
- *
- * Stores all search region data, providing some query methods.
- */
-class RegionSet {
-  /**
-   * Creates a new RegionSet class.
-   * @param {Array.<Object>} regions The region data to store.
-   */
-  constructor (regions) {
-    this.regions = regions.map(region => new Region(region))
-    this.finder = _.partial(_.find, this.regions)
-  }
-
-  /**
-   * Finds the first search region matched `predicate` object.
-   * @param {Object} predicate The object to match per region.
-   * @return {(Region|undefined)} Returns the matched region, else `undefined`.
-   */
-  find (predicate) {
-    return this.finder(predicate)
-  }
-
-  /**
-   * Gets a search region matched 'id`.
-   * @param {string} id The region ID to get.
-   * @return {(Region|undefined)} Returns the matches region, else `undefined`.
-   */
-  getByID (id) {
-    return this.finder({ id: id })
-  }
-
-  /**
-   * All search region data as a readonly array.
-   * @readonly
-   * @type {Array.<Region>}
-   */
-  get all () {
-    return this.regions
-  }
-
-  /**
-   * Current search region parsed from page URL, else `undefined`.
-   * @readonly
-   * @type {(Region|undefined)}
-   */
-  get current () {
-    const url = new window.URL(window.location.href)
-    const domain = url.hostname.replace(/^(.+)\.google\.([A-z.]+)(.*)$/i, '$2')
-    const lang = url.searchParams.get('hl')
-    return this.finder({ domain: domain, lang: lang })
-  }
+  return Promise.resolve()
 }
 
 /**
- * Single Search Region Data
- *
- * Stores a single search region data, including id, name, domain and language parameter.
+ * @return {Promise<HTMLStyleElement>}
  */
-class Region {
-  /**
-   * Creates a new Region class.
-   * @param {{id: string, name: string, domain: string, lang: string?}} region
-   */
-  constructor (region) {
-    Object.assign(this, region)
-  }
+function addStyles () {
+  const style = GM_addStyle(`
+    $inline('css:menu,4')
+    $inline('css:modal,4')
+    $inline('css:flags,4')
+  `)
 
-  /**
-   * ISO-3166 country code.
-   * @readonly
-   * @type {string}
-   */
-  get countryCode () {
-    return this.id.replace(/^(\w+)-(\w+)$/i, '$1')
-  }
-
-  /**
-   * Search URL replaced with region domain and language parameters.
-   * @readonly
-   * @type {string}
-   */
-  get searchURL () {
-    const url = new window.URL(window.location.href)
-    const domain = this.domain
-    const lang = this.lang
-
-    // Replace domain.
-    url.hostname = url.hostname.replace(/^(.+)\.google\.([A-z.]+)(.*)$/i, `$1.google.${domain}$3`)
-
-    // Set language parameter if any.
-    lang ? url.searchParams.set('hl', lang) : url.searchParams.delete('hl')
-
-    // Remove unnecessary URL parameters.
-    url.searchParams.delete('safe')
-    url.searchParams.delete('oq')
-
-    return url.toString()
-  }
+  return Promise.resolve(style)
 }
 
-// -------------------------------------------------------------------------------------------------
+// =============================================================================
+// Initialization
+// =============================================================================
 
 /**
- * Search Region Menu Class
- *
- * The main class of this user script. Initializes the region menu and inserts it to the page.
+ * @return {Promise<Element>}
  */
-class Menu {
-  /**
-   * Creates a new Menu class.
-   */
-  constructor () {
-    this.regions = new RegionSet($inline('data/regions.json|stringify|indent:4|trim'))
-
-    this.currentRegion = this.regions.current || this.regions.getByID('wt-wt')
-
-    this.recentRegions = ['us-en', 'jp-ja', 'tw-zh']
-    this.recentRegionsKey = 'recentRegions'
-
-    this.classMap = {
-      menuButton: 'GM_region_menuButton',
-      menuList: 'GM_region_menuList',
-      menuItem: 'GM_region_menuItem',
-      menuLink: 'GM_region_menuLink',
-      toggler: 'GM_region_toggler',
-      togglable: 'GM_region_togglable',
-      removable: 'GM_region_removable'
-    }
-  }
-
-  /**
-   * Initializes the menu, inserting it when the page is ready.
-   */
-  init () {
-    this.addStyles()
-    this.delegateEvents()
-
-    // Observe the page and insert menu when possible.
+function waitForPageReady () {
+  return new Promise(resolve => {
+    const observee = $('#hdtb')
     const observer = new window.MutationObserver(() => {
-      const $target = $('#hdtb-mn-gp')
-      if ($target.length !== 0) {
-        this.insertMenu($target)
-        this.insertRecentItems()
-        observer.disconnect()
-      }
+      const target = $('#hdtb-mn-gp')
+      if (target) { resolve(target) }
     })
-    observer.observe(document.body, { childList: true, subtree: true })
-  }
 
-  /**
-   * Generates menu HTML, inserting after `$target` element.
-   * @param {JQueryLike} $target The target element to insert menu.
-   */
-  insertMenu ($target) {
-    const html = []
-
-    html.push(this.makeMenuButton())
-    html.push(this.makeMenuList())
-
-    $target.after(html.join(' '))
-  }
-
-  /**
-   * Generates recent items HTML, prepending to `$target` element.
-   */
-  insertRecentItems () {
-    this.getRecentRegions().then(ids => {
-      const $target = $(`.${this.classMap.menuList}`)
-
-      // Map ID to `Region` object and map again to HTML string.
-      const html = ids.map(id => this.regions.getByID(id)).map(region => {
-        return this.makeMenuItem(region, { togglable: false, removable: true })
-      })
-
-      // Inserts a separator.
-      html.push('<li class="hdtbItm"><div class="cdr_sep"></div></li>')
-
-      $target.prepend(html.join(' '))
-    })
-  }
-
-  /**
-   * Generates menu button HTML string.
-   * @return {string}
-   */
-  makeMenuButton () {
-    const region = this.currentRegion
-    const content = `${this.makeFlag(region)} ${region.name}`
-    const classList = [this.classMap.menuButton]
-
-    // Add `hdtb-sel` to bolden button text if current region is set.
-    if (region.id !== 'wt-wt') classList.unshift('hdtb-sel')
-
-    return `
-      <div class="hdtb-mn-hd ${classList.join(' ')}" role="button">
-        <div class="mn-hd-txt">${content}</div>
-        <span class="mn-dwn-arw"></span>
-      </div>
-    `
-  }
-
-  /**
-   * Generates menu list HTML string.
-   * @return {string}
-   */
-  makeMenuList () {
-    const items = this.regions.all.map(region => {
-      return this.makeMenuItem(region, { togglable: true, removable: false })
-    })
-    const toggler = `
-      <li class="hdtbItm">
-        <a class="q qs ${this.classMap.toggler}" href="#"
-           title="More regions...">
-          ...
-        </a>
-      </li>
-    `
-
-    return `
-      <ul class="hdtbU hdtb-mn-c ${this.classMap.menuList}">
-        ${toggler}
-        ${items.join(' ')}
-      </ul>
-    `
-  }
-
-  /**
-   * Generates menu item HTML string.
-   * @param {Region} region
-   * @param {{togglable: boolean, removable: boolean}} options
-   * @return {string}
-   */
-  makeMenuItem (region, options) {
-    const { id, name, domain, lang, searchURL } = region
-    const selected = id === this.currentRegion.id
-    const togglable = options.togglable
-    const removable = options.removable
-    const content = `${this.makeFlag(region)} ${name}`
-    const itemClassList = [this.classMap.menuItem]
-    const linkClassList = [this.classMap.menuLink]
-    const inlineStyle = togglable ? ['display:none'] : []
-    const tooltip = removable ? `Press Shift+Click to remove this item.` : `Domain: ${domain}\nLanguage: ${lang}`
-
-    if (selected) {
-      return `
-        <li class="hdtbItm hdtbSel ${itemClassList.join(' ')}">${content}</li>
-      `
-    }
-
-    if (togglable) itemClassList.push(this.classMap.togglable)
-    if (removable) linkClassList.push(this.classMap.removable)
-
-    return `
-      <li class="hdtbItm ${itemClassList.join(' ')}"
-          style="${inlineStyle.join(';')}">
-        <a class="q qs ${linkClassList.join(' ')}" href="${searchURL}"
-           data-gm-region="${id}" title="${tooltip}">
-          ${content}
-        </a>
-      </li>
-    `
-  }
-
-  /**
-   * Generates flag HTML string.
-   * @param {Region} region The region to get flag HTML from.
-   * @return {string}
-   */
-  makeFlag (region) {
-    return `<span class="flag flag-${region.countryCode}"></span>`
-  }
-
-  /**
-   * Gets recent regions IDs from `ScriptStorage`.
-   * @return {Promise(Array.<String>)}
-   */
-  getRecentRegions () {
-    return ScriptStorage.getValue(this.recentRegionsKey, this.recentRegions)
-      .then(value => {
-        this.recentRegions = value
-        return value
-      })
-  }
-
-  /**
-   * Prepends a region ID to recent regions.
-   * @param {string} id The region ID to prepend.
-   * @return {Promise}
-   */
-  addRecentRegion (id) {
-    let recentRegions = this.recentRegions
-    recentRegions.unshift(id)
-    recentRegions = _.uniq(recentRegions)     // Remove duplicated regions.
-    recentRegions = _.take(recentRegions, 3)  // Take first 3 regions.
-    return ScriptStorage.setValue(this.recentRegionsKey, recentRegions)
-  }
-
-  /**
-   * Removes a region ID from recent regions.
-   * @param {string} id The region ID to remove.
-   * @return {Promise}
-   */
-  removeRecentRegion (id) {
-    let recentRegions = this.recentRegions
-    recentRegions = _.pull(recentRegions, id)
-    return ScriptStorage.setValue(this.recentRegionsKey, recentRegions)
-  }
-
-  /**
-   * Attaches all event handler functions to the menu elements.
-   */
-  delegateEvents () {
-    $(document)
-      .on('click', `a.${this.classMap.toggler}`, event => {
-        this.onTogglerClick(event)
-      })
-      .on('click', `a.${this.classMap.menuLink}`, event => {
-        this.onMenuLinkClick(event)
-      })
-  }
-
-  /**
-   * Toggles menu items.
-   * @param {Object} event
-   */
-  onTogglerClick (event) {
-    event.preventDefault()
-    $(`li.${this.classMap.togglable}`).toggle()
-  }
-
-  /**
-   * Stores clicked region link and redirects page.
-   * @param {Object} event
-   */
-  onMenuLinkClick (event) {
-    event.preventDefault()
-    const $target = $(event.target)
-    const id = $target.attr('data-gm-region')
-    const href = $target.attr('href')
-    const removable = $target.hasClass(this.classMap.removable)
-
-    if (event.shiftKey && removable) {
-      this.removeRecentRegion(id).then(() => $target.remove())
-    } else {
-      this.addRecentRegion(id).then(() => { window.location.href = href })
-    }
-  }
-
-  /**
-   * Injects CSS codes used by this user script to the page.
-   */
-  addStyles () {
-    GM_addStyle(`
-      .hdtb-sel { font-weight: bold }
-      .${this.classMap.menuList} { max-height: 60vh; overflow-y: auto }
-    `)
-    GM_addStyle(`
-      $inline('css/flags.css|cssmin|indent:6|trim')
-    `)
-  }
+    observer.observe(observee, { childList: true, subtree: true })
+  })
 }
 
-new Menu().init()
+Promise.all([
+  waitForPageReady(),
+  loadConfig(),
+  delegateEvents(),
+  addStyles()
+]).then(values => createMenu(values[0]))

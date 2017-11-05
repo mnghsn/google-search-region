@@ -10,12 +10,10 @@ A user script that lets you quickly switch Google search to different region.
 
 _Google does have an option to search in different region_, but it's hidden in "Advanced Search" page. This user script adds a region menu to Google search page so you can access it directly.
 
-The most recently visited regions show at the top. You can press **Shift + Left Click** to clear.
-
-The whole region list is too long, so it is hidden by default. You can click **"..."** to expand or close the regions.
+You can configurate regions and urls by clicking **"..."** in dropdown menu.
 
 The following regions are supported:
-_Argentina, Australia, Austria, Belgium (fr), Belgium (nl), Brazil, Bulgaria, Canada, Canada (fr), Catalonia, Chile, China, Colombia, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hong Kong, Hungary, India, Indonesia, Indonesia (en), Ireland, Israel, Italy, Japan, Korea, Latvia, Lithuania, Malaysia, Malaysia (en), Mexico, Netherlands, New Zealand, Norway, Peru, Philippines, Philippines (tl), Poland, Portugal, Romania, Russia, Saudi Arabia, Singapore, Slovakia, Slovenia, South Africa, Spain, Spain (ca), Sweden, Switzerland (de), Switzerland (fr), Switzerland (it), Taiwan, Thailand, Turkey, United Kingdom, United States, United States (es) and Vietnam._
+Argentina, Australia, Austria, Belgium (fr), Belgium (nl), Brazil, Bulgaria, Canada, Canada (fr), Catalonia, Chile, China, Colombia, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hong Kong, Hungary, India, Indonesia, Indonesia (en), Ireland, Israel, Italy, Japan, Korea, Latvia, Lithuania, Malaysia, Malaysia (en), Mexico, Netherlands, New Zealand, Norway, Peru, Philippines, Philippines (tl), Poland, Portugal, Romania, Russia, Saudi Arabia, Singapore, Slovakia, Slovenia, South Africa, Spain, Spain (ca), Sweden, Switzerland (de), Switzerland (fr), Switzerland (it), Taiwan, Thailand, Turkey, United Kingdom, United States, United States (es) and Vietnam.
 (See `src/data/regions.json` for details.)
 
 ## Installation

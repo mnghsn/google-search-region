@@ -5,6 +5,24 @@ module.exports = {
       expand: function (file, ...args) {
         return `../package.json|parse:${args.join()}`
       }
+    },
+    {
+      name: 'css',
+      expand: function (file, css, indent = '0') {
+        return `css/${css}.css|cssmin|indent:${indent}|trim`
+      }
+    },
+    {
+      name: 'data',
+      expand: function (file, data, indent = '0') {
+        return `data/${data}.json|stringify:120|indent:${indent}|trim`
+      }
+    },
+    {
+      name: 'template',
+      expand: function (file, template, indent = '0') {
+        return `templates/${template}.html|indent:${indent}|trim`
+      }
     }
   ],
 
