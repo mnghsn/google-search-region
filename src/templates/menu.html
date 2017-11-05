@@ -15,7 +15,7 @@
 <ul class="hdtbU hdtb-mn-c gsr-menu-dropdown">
   <!-- List user regions. -->
   <% config.userRegions.map(getRegionByID).forEach(region => { %>
-    <% if (currentRegion&& region.id === currentRegion.id) { %>
+    <% if (currentRegion && region.id === currentRegion.id) { %>
       <li class="hdtbItm hdtbSel">
         <% if (region.country && config.showFlags) { %><span class="flag flag-<%- region.country %>"></span><% } %>
         <%- region.name %>
