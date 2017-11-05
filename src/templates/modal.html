@@ -1,0 +1,79 @@
+<!-- Configuration Modal -->
+<div class="gsr-modal" data-gsr-onclick="hideModal">
+  <div class="gsr-modal-dialog">
+    <!-- Modal Header -->
+    <div class="gsr-modal-header">
+      <div class="gsr-modal-title">Google Search Region</div>
+      <div class="gsr-modal-close" arial-label="Close" data-gsr-onclick="hideModal"></div>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="gsr-modal-body">
+      <!-- Menu Configuration -->
+      <div class="gsr-modal-subtitle">Menu</div>
+      <!-- config.showFlags -->
+      <label class="gsr-control">
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:showFlags" <%- config.showFlags && 'checked' %>>
+        <span class="gsr-control-indicator"></span>
+        <span class="gsr-control-description">Show country flags</span>
+      </label>
+
+      <!-- URL Configuration -->
+      <div class="gsr-modal-subtitle">URL</div>
+      <!-- config.setTLD -->
+      <label class="gsr-control">
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setTLD" <%- config.setTLD && 'checked' %>>
+        <span class="gsr-control-indicator"></span>
+        <span class="gsr-control-description">Set top level domain</span>
+      </label>
+      <!-- config.setHl -->
+      <label class="gsr-control">
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setHl" <%- config.setHl && 'checked' %>>
+        <span class="gsr-control-indicator"></span>
+        <span class="gsr-control-description">Set host language (hl)</span>
+      </label>
+      <!-- config.setGl -->
+      <label class="gsr-control">
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setGl" <%- config.setGl && 'checked' %>>
+        <span class="gsr-control-indicator"></span>
+        <span class="gsr-control-description">Set region (gl)</span>
+      </label>
+      <!-- config.setCr -->
+      <label class="gsr-control">
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setCr" <%- config.setCr && 'checked' %>>
+        <span class="gsr-control-indicator"></span>
+        <span class="gsr-control-description">Set country filter (cr)</span>
+      </label>
+      <!-- config.setLr -->
+      <label class="gsr-control">
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setLr" <%- config.setLr && 'checked' %>>
+        <span class="gsr-control-indicator"></span>
+        <span class="gsr-control-description">Set language filter (lr)</span>
+      </label>
+
+      <!-- Regions Configuration -->
+      <div class="gsr-modal-subtitle">Regions</div>
+      <div class="gsr-columns">
+        <!-- config.userRegions[] -->
+        <% regions.forEach(region => { %>
+          <label class="gsr-control" title="<%- region.name %>">
+            <input class="gsr-control-input" type="checkbox"
+                   data-gsr-config="array:userRegions:<%- region.id %>"
+                   <%- config.userRegions.includes(region.id) ? 'checked' : '' %>>
+            <span class="gsr-control-indicator"></span>
+            <span class="gsr-control-description">
+              <% if (region.country) { %><span class="flag flag-<%- region.country %>"></span><% } %>
+              <%- region.name %>
+            </span>
+          </label>
+        <% }); %>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="gsr-modal-footer">
+      <button class="gsr-btn gsr-btn-primary" data-gsr-onclick="save">Save</button>
+      <button class="gsr-btn gsr-btn-default" data-gsr-onclick="hideModal">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+/*!
+ * Region Menu Dropdown CSS
+ */
+
+.hdtb-sel {
+  font-weight: bold;
+}
+
+.gsr-menu-dropdown {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.gsr-menu-config {
+  cursor: pointer;
+}

@@ -1,0 +1,155 @@
+/*!
+ * Configuration Modal CSS
+ */
+
+.gsr-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.75);
+}
+
+.gsr-modal-dialog {
+  display: block;
+  width: 800px;
+  max-width: 80vw;
+  max-height: 80vh;
+  overflow: auto;
+  margin: 32px;
+  padding: 32px;
+  border: 1px solid #c5c5c5;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  background-color: #fff;
+  font-size: 13px;
+}
+
+.gsr-modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.gsr-modal-footer {
+  text-align: right;
+}
+
+.gsr-modal-body {
+  margin: 16px 0;
+}
+
+.gsr-modal-title {
+  font-size: 16px;
+  font-weight: thin;
+}
+
+.gsr-modal-subtitle {
+  margin: 16px 0;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.gsr-modal-close {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-image: url('$inline("close.png|dataurl:image/png")');
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.gsr-columns {
+  max-height: 300px;
+  overflow-x: auto;
+  -webkit-column-count: 5;
+  -moz-column-count: 5;
+  column-count: 5;
+}
+
+.gsr-control {
+  display: block;
+  margin: 4px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gsr-control-input {
+  display: none;
+}
+
+.gsr-control-indicator {
+  display: inline-block;
+  margin: 0 4px;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #c6c6c6;
+  border-radius: 1px;
+  vertical-align: text-bottom;
+}
+
+.gsr-control-indicator::after {
+  content: " ";
+  display: none;
+  position: relative;
+  top: -3px;
+  width: 15px;
+  height: 15px;
+  background-image: url('$inline("checkmark.png|dataurl:image/png")');
+  background-repeat: no-repeat;
+  background-position: -5px -3px;
+}
+
+.gsr-control:hover .gsr-control-indicator {
+  border-color: #b2b2b2;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
+}
+.gsr-control-input:checked ~ .gsr-control-indicator::after {
+  display: inline-block;
+}
+
+.gsr-btn {
+  display: inline-block;
+  min-width: 70px;
+  height: 27px;
+  padding: 0 8px;
+  border: 1px solid;
+  border-radius: 2px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: bold;
+  outline: none;
+}
+
+.gsr-btn-default {
+  border-color: rgba(0,0,0,0.1);
+  background-image: linear-gradient(#f5f5f5,#f1f1f1);
+  color: #444;
+}
+.gsr-btn-default:hover {
+  border-color: #c6c6c6;
+  background-image: linear-gradient(#f8f8f8,#f1f1f1);
+  color: #333;
+}
+.gsr-btn-default:focus {
+  border-color: #4d90fe;
+}
+
+.gsr-btn-primary {
+  border-color: #3079ed;
+  background-image: linear-gradient(#4d90fe,#4787ed);
+  color: #fff;
+}
+.gsr-btn-primary:hover {
+  border-color: #2f5bb7;
+  background-image: linear-gradient(#4d90fe,#357ae8);
+  color: #fff;
+}
+.gsr-btn-primary:focus {
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px #fff;
+}
