@@ -1,10 +1,13 @@
+<% const { setTLD, setHl, setGl, setCr, setLr, showFlags, userRegions } = config; %>
+
 <!-- Configuration Modal -->
 <div class="gsr-modal" data-gsr-onclick="hideModal">
+  <!-- Modal Dialog -->
   <div class="gsr-modal-dialog">
     <!-- Modal Header -->
     <div class="gsr-modal-header">
       <div class="gsr-modal-title">Google Search Region</div>
-      <div class="gsr-modal-close" arial-label="Close" data-gsr-onclick="hideModal"></div>
+      <div class="gsr-modal-close" role="button" aria-label="Close" data-gsr-onclick="hideModal"></div>
     </div>
 
     <!-- Modal Body -->
@@ -13,7 +16,7 @@
       <div class="gsr-modal-subtitle">Menu</div>
       <!-- config.showFlags -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="showFlags" <%- config.showFlags && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="showFlags" <%- showFlags ? 'checked' : '' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Show country flags</span>
       </label>
@@ -22,31 +25,31 @@
       <div class="gsr-modal-subtitle">URL</div>
       <!-- config.setTLD -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setTLD" <%- config.setTLD && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setTLD" <%- setTLD ? 'checked' : '' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set top level domain</span>
       </label>
       <!-- config.setHl -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setHl" <%- config.setHl && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setHl" <%- setHl ? 'checked' : '' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set host language (hl)</span>
       </label>
       <!-- config.setGl -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setGl" <%- config.setGl && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setGl" <%- setGl ? 'checked' : '' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set region (gl)</span>
       </label>
       <!-- config.setCr -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setCr" <%- config.setCr && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setCr" <%- setCr ? 'checked' : '' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set country filter (cr)</span>
       </label>
       <!-- config.setLr -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setLr" <%- config.setLr && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setLr" <%- setLr ? 'checked' : '' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set language filter (lr)</span>
       </label>
@@ -54,16 +57,17 @@
       <!-- Regions Configuration -->
       <div class="gsr-modal-subtitle">Regions</div>
       <div class="gsr-columns">
-        <!-- config.userRegions[] -->
+        <!-- config.userRegions -->
         <% regions.forEach(region => { %>
-          <label class="gsr-control" title="<%- region.name %>">
+          <% let { id, name, country } = region; %>
+          <% let isChecked = userRegions.includes(id); %>
+          <label class="gsr-control" title="<%- name %>">
             <input class="gsr-control-input" type="checkbox"
-                   data-gsr-config="userRegions:<%- region.id %>"
-                   <%- config.userRegions.includes(region.id) ? 'checked' : '' %>>
+                   data-gsr-config="userRegions:<%- id %>" <%- isChecked ? 'checked' : '' %>>
             <span class="gsr-control-indicator"></span>
             <span class="gsr-control-description">
-              <% if (region.country) { %><span class="flag flag-<%- region.country %>"></span><% } %>
-              <%- region.name %>
+              <% if (country) { %> <span class="flag flag-<%- country %>"></span> <% } %>
+              <%- name %>
             </span>
           </label>
         <% }); %>
