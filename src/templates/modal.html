@@ -13,7 +13,7 @@
       <div class="gsr-modal-subtitle">Menu</div>
       <!-- config.showFlags -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:showFlags" <%- config.showFlags && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="showFlags" <%- config.showFlags && 'checked' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Show country flags</span>
       </label>
@@ -22,31 +22,31 @@
       <div class="gsr-modal-subtitle">URL</div>
       <!-- config.setTLD -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setTLD" <%- config.setTLD && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setTLD" <%- config.setTLD && 'checked' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set top level domain</span>
       </label>
       <!-- config.setHl -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setHl" <%- config.setHl && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setHl" <%- config.setHl && 'checked' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set host language (hl)</span>
       </label>
       <!-- config.setGl -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setGl" <%- config.setGl && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setGl" <%- config.setGl && 'checked' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set region (gl)</span>
       </label>
       <!-- config.setCr -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setCr" <%- config.setCr && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setCr" <%- config.setCr && 'checked' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set country filter (cr)</span>
       </label>
       <!-- config.setLr -->
       <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="boolean:setLr" <%- config.setLr && 'checked' %>>
+        <input class="gsr-control-input" type="checkbox" data-gsr-config="setLr" <%- config.setLr && 'checked' %>>
         <span class="gsr-control-indicator"></span>
         <span class="gsr-control-description">Set language filter (lr)</span>
       </label>
@@ -58,7 +58,7 @@
         <% regions.forEach(region => { %>
           <label class="gsr-control" title="<%- region.name %>">
             <input class="gsr-control-input" type="checkbox"
-                   data-gsr-config="array:userRegions:<%- region.id %>"
+                   data-gsr-config="userRegions:<%- region.id %>"
                    <%- config.userRegions.includes(region.id) ? 'checked' : '' %>>
             <span class="gsr-control-indicator"></span>
             <span class="gsr-control-description">

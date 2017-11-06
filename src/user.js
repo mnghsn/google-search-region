@@ -357,20 +357,14 @@ function delegateEvents () {
 
     controls.forEach(control => {
       const attr = control.getAttribute('data-gsr-config').split(':')
-      const [type, name, value] = attr
+      const [name, value = control.value] = attr
 
-      switch (type.toLowerCase()) {
-        case 'boolean':
-          pending[name] = control.checked
-          break
-        case 'array':
-          if (control.checked) {
-            if (!Array.isArray(pending[name])) { pending[name] = [] }
-            pending[name].push(value)
-          }
-          break
-        default:
-          break
+      if (typeof config[name] === 'boolean') {
+        pending[name] = control.checked
+      }
+      if (Array.isArray(config[name])) {
+        if (!Array.isArray(pending[name])) { pending[name] = [] }
+        if (control.checked) { pending[name].push(value) }
       }
     })
 
