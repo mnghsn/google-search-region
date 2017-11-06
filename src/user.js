@@ -217,9 +217,9 @@ function getRegionByID (regionID) {
 
 const urlRegExp = {
   tld: /^www\.google\.([\w.]+)$/i,
-  lang: /^(\w+)-(\w+)$/i,
   cr: /^country(\w+)$/i,
-  lr: /^lang_([\w-]+)$/i
+  lr: /^lang_([\w-]+)$/i,
+  lang: /-\w+$/i
 }
 
 /**
@@ -289,9 +289,7 @@ function getSearchURL (region) {
     searchParams.delete('cr')
   }
   if (setLr && lang) {
-    const lr = lang.replace(urlRegExp.lang, (match, p1, p2) => {
-      return `lang_${p1.toLowerCase()}-${p2.toUpperCase()}`
-    })
+    const lr = `lang_${lang.replace(urlRegExp.lang, m => m.toUpperCase())}`
     searchParams.set('lr', lr)
   } else {
     searchParams.delete('lr')
