@@ -15,6 +15,7 @@
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+  vertical-align: middle;
 }
 
 .flag.flag-wt {
