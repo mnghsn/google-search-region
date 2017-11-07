@@ -18,6 +18,7 @@
 <ul class="hdtbU hdtb-mn-c gsr-menu-dropdown">
   <!-- User Regions List -->
   <% userRegions.map(getRegionByID).forEach(region => { %>
+    <% if (!region) { return; } %>
     <% let { id, name, country } = region; %>
     <% let isCurrent = currentRegion && currentRegion.id === id; %>
     <% let url = getSearchURL(region); %>
