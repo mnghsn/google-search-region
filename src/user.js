@@ -215,12 +215,12 @@ function getRegionByID (regionID) {
   return findRegion({ id: regionID })
 }
 
-const urlRegExp = {
+const urlRegExp = Object.freeze({
   tld: /^www\.google\.([\w.]+)$/i,
   cr: /^country(\w+)$/i,
   lr: /^lang_([\w-]+)$/i,
   lang: /-\w+$/i
-}
+})
 
 /**
  * @return {Region}
