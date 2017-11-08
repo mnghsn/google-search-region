@@ -149,6 +149,7 @@ function renderTemplate (text, data) {
  * @property {boolean} setGl
  * @property {boolean} setCr
  * @property {boolean} setLr
+ * @property {boolean} showFlags
  * @property {Array<string>} userRegions
  */
 
