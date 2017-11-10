@@ -23,10 +23,10 @@
     <% let isCurrent = currentRegion && currentRegion.id === id; %>
     <% let url = getSearchURL(region); %>
     <li class="hdtbItm <%- isCurrent ? 'hdtbSel' : '' %>">
-      <% if (!isCurrent) { %> <a class="q qs" href="<%- url %>"> <% } %>
+      <a class="q qs" href="<%- url %>">
         <% if (country && showFlags) { %> <span class="flag flag-<%- country %>"></span> <% } %>
         <%- name %>
-      <% if (!isCurrent) { %> </a> <% } %>
+      </a>
     </li>
   <% }); %>
 

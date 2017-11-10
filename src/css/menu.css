@@ -11,6 +11,10 @@
   overflow-y: auto;
 }
 
+.gsr-menu-dropdown .hdtbSel a {
+  padding: 0 !important;
+}
+
 .gsr-menu-config {
   cursor: pointer;
 }
