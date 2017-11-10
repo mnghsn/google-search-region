@@ -271,8 +271,8 @@ function getSearchURL (region) {
 
   if (setTLD && tld) {
     url.hostname = hostname.replace(urlRegExp.tld, `www.google.${tld}`)
-  } else {
-    if (urlRegExp.tld.test(url.hostname)) { url.hostname = 'www.google.com' }
+  } else if (urlRegExp.tld.test(url.hostname)) {
+    url.hostname = 'www.google.com'
   }
   if (setHl && lang) {
     searchParams.set('hl', lang)
