@@ -27,6 +27,9 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 
 ## Changelog
 
+* **v0.2.1** (2017-11-11)
+  * Minor fixes for codes and UI
+  * Make current region item clickable
 * **v0.2.0** (2017-11-05)
   * Apply script to encrypted.google.com
   * Use modal dialog to provide more options
