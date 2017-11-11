@@ -11,8 +11,12 @@
   overflow-y: auto;
 }
 
-.gsr-menu-dropdown .hdtbSel a {
-  padding: 0 !important;
+.gsr-menu-dropdown .hdtbItm.hdtbSel {
+  padding: 0;
+}
+
+.gsr-menu-dropdown .hdtbItm.hdtbSel a {
+  background-color: transparent;
 }
 
 .gsr-menu-config {
