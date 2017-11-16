@@ -1,7 +1,7 @@
 <% const { showFlags, userRegions } = config; %>
 
 <!-- Menu Dropdown Toggle -->
-<div class="hdtb-mn-hd gsr-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" role="button">
+<div class="hdtb-mn-hd gm-region-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" role="button">
   <div class="mn-hd-txt">
     <% if (currentRegion) { %>
       <% let { name, country } = currentRegion; %>
@@ -15,7 +15,7 @@
 </div>
 
 <!-- Menu Dropdown -->
-<ul class="hdtbU hdtb-mn-c gsr-menu-dropdown">
+<ul class="hdtbU hdtb-mn-c gm-region-menu-dropdown">
   <!-- User Regions List -->
   <% userRegions.map(getRegionByID).forEach(region => { %>
     <% if (!region) { return; } %>
@@ -33,6 +33,6 @@
   <!-- Configuration Modal Toggle -->
   <li class="hdtbItm">
     <div class="cdr_sep"></div>
-    <a class="q qs gsr-menu-config" data-gsr-onclick="showModal" title="Google Search Region">...</a>
+    <a class="q qs gm-region-menu-config" data-gm-region-onclick="showModal" title="Google Search Region">...</a>
   </li>
 </ul>

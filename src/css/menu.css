@@ -6,19 +6,19 @@
   font-weight: bold;
 }
 
-.gsr-menu-dropdown {
+.gm-region-menu-dropdown {
   max-height: 80vh;
   overflow-y: auto;
 }
 
-.gsr-menu-dropdown .hdtbItm.hdtbSel {
+.gm-region-menu-dropdown .hdtbItm.hdtbSel {
   padding: 0;
 }
 
-.gsr-menu-dropdown .hdtbItm.hdtbSel a {
+.gm-region-menu-dropdown .hdtbItm.hdtbSel a {
   background-color: transparent;
 }
 
-.gsr-menu-config {
+.gm-region-menu-config {
   cursor: pointer;
 }

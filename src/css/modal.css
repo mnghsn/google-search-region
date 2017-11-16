@@ -2,7 +2,7 @@
  * Configuration Modal CSS
  */
 
-.gsr-modal {
+.gm-region-modal {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,7 @@
   background-color: rgba(255,255,255,0.75);
 }
 
-.gsr-modal-dialog {
+.gm-region-modal-dialog {
   display: block;
   width: 800px;
   max-width: 80vw;
@@ -29,31 +29,31 @@
   font-size: 13px;
 }
 
-.gsr-modal-header {
+.gm-region-modal-header {
   display: flex;
   justify-content: space-between;
 }
 
-.gsr-modal-footer {
+.gm-region-modal-footer {
   text-align: right;
 }
 
-.gsr-modal-body {
+.gm-region-modal-body {
   margin: 16px 0;
 }
 
-.gsr-modal-title {
+.gm-region-modal-title {
   font-size: 16px;
   font-weight: thin;
 }
 
-.gsr-modal-subtitle {
+.gm-region-modal-subtitle {
   margin: 16px 0;
   font-size: 13px;
   font-weight: bold;
 }
 
-.gsr-modal-close {
+.gm-region-modal-close {
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -62,7 +62,7 @@
   cursor: pointer;
 }
 
-.gsr-columns {
+.gm-region-columns {
   max-height: 300px;
   overflow-x: auto;
   -webkit-column-count: 5;
@@ -70,7 +70,7 @@
   column-count: 5;
 }
 
-.gsr-control {
+.gm-region-control {
   display: block;
   margin: 4px 0;
   overflow: hidden;
@@ -78,11 +78,11 @@
   white-space: nowrap;
 }
 
-.gsr-control-input {
+.gm-region-control-input {
   display: none;
 }
 
-.gsr-control-indicator {
+.gm-region-control-indicator {
   display: inline-block;
   margin: 0 4px;
   width: 10px;
@@ -92,7 +92,7 @@
   vertical-align: middle;
 }
 
-.gsr-control-indicator::after {
+.gm-region-control-indicator::after {
   content: " ";
   display: none;
   position: relative;
@@ -104,15 +104,15 @@
   background-position: -5px -3px;
 }
 
-.gsr-control:hover .gsr-control-indicator {
+.gm-region-control:hover .gm-region-control-indicator {
   border-color: #b2b2b2;
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.1);
 }
-.gsr-control-input:checked ~ .gsr-control-indicator::after {
+.gm-region-control-input:checked ~ .gm-region-control-indicator::after {
   display: inline-block;
 }
 
-.gsr-btn {
+.gm-region-btn {
   display: inline-block;
   min-width: 70px;
   height: 27px;
@@ -125,31 +125,31 @@
   outline: none;
 }
 
-.gsr-btn-default {
+.gm-region-btn-default {
   border-color: rgba(0,0,0,0.1);
   background-image: linear-gradient(#f5f5f5,#f1f1f1);
   color: #444;
 }
-.gsr-btn-default:hover {
+.gm-region-btn-default:hover {
   border-color: #c6c6c6;
   background-image: linear-gradient(#f8f8f8,#f1f1f1);
   color: #333;
 }
-.gsr-btn-default:focus {
+.gm-region-btn-default:focus {
   border-color: #4d90fe;
 }
 
-.gsr-btn-primary {
+.gm-region-btn-primary {
   border-color: #3079ed;
   background-image: linear-gradient(#4d90fe,#4787ed);
   color: #fff;
 }
-.gsr-btn-primary:hover {
+.gm-region-btn-primary:hover {
   border-color: #2f5bb7;
   background-image: linear-gradient(#4d90fe,#357ae8);
   color: #fff;
 }
-.gsr-btn-primary:focus {
+.gm-region-btn-primary:focus {
   border-color: transparent;
   box-shadow: inset 0 0 0 1px #fff;
 }

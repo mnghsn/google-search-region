@@ -342,22 +342,22 @@ function delegateEvents () {
   const events = {}
 
   events.showModal = function showModal (event) {
-    const modal = $('.gsr-modal')
+    const modal = $('.gm-region-modal')
     if (modal) { modal.style.display = null } else { createModal(body) }
   }
 
   events.hideModal = function hideModal (event) {
-    const modal = $('.gsr-modal')
+    const modal = $('.gm-region-modal')
     if (modal) { modal.style.display = 'none' }
   }
 
   events.save = function save (event) {
-    const modal = $('.gsr-modal')
-    const controls = $$('[data-gsr-config]', modal)
+    const modal = $('.gm-region-modal')
+    const controls = $$('[data-gm-region-config]', modal)
     const pending = {}
 
     controls.forEach(control => {
-      const attr = control.getAttribute('data-gsr-config').split(':')
+      const attr = control.getAttribute('data-gm-region-config').split(':')
       const [name, value = control.value] = attr
 
       if (typeof config[name] === 'boolean') {
@@ -376,8 +376,8 @@ function delegateEvents () {
     })
   }
 
-  $delegate(body, '[data-gsr-onclick]', 'click', event => {
-    const name = event.target.getAttribute('data-gsr-onclick')
+  $delegate(body, '[data-gm-region-onclick]', 'click', event => {
+    const name = event.target.getAttribute('data-gm-region-onclick')
     const callback = events[name]
     if (callback) { callback.call(event.target, event) }
   })

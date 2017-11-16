@@ -1,71 +1,71 @@
 <% const { setTLD, setHl, setGl, setCr, setLr, showFlags, userRegions } = config; %>
 
 <!-- Configuration Modal -->
-<div class="gsr-modal" data-gsr-onclick="hideModal">
+<div class="gm-region-modal" data-gm-region-onclick="hideModal">
   <!-- Modal Dialog -->
-  <div class="gsr-modal-dialog">
+  <div class="gm-region-modal-dialog">
     <!-- Modal Header -->
-    <div class="gsr-modal-header">
-      <div class="gsr-modal-title">Google Search Region</div>
-      <div class="gsr-modal-close" role="button" aria-label="Close" data-gsr-onclick="hideModal"></div>
+    <div class="gm-region-modal-header">
+      <div class="gm-region-modal-title">Google Search Region</div>
+      <div class="gm-region-modal-close" role="button" aria-label="Close" data-gm-region-onclick="hideModal"></div>
     </div>
 
     <!-- Modal Body -->
-    <div class="gsr-modal-body">
+    <div class="gm-region-modal-body">
       <!-- Menu Configuration -->
-      <div class="gsr-modal-subtitle">Menu</div>
+      <div class="gm-region-modal-subtitle">Menu</div>
       <!-- config.showFlags -->
-      <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="showFlags" <%- showFlags ? 'checked' : '' %>>
-        <span class="gsr-control-indicator"></span>
-        <span class="gsr-control-description">Show country flags</span>
+      <label class="gm-region-control">
+        <input class="gm-region-control-input" type="checkbox" data-gm-region-config="showFlags" <%- showFlags ? 'checked' : '' %>>
+        <span class="gm-region-control-indicator"></span>
+        <span class="gm-region-control-description">Show country flags</span>
       </label>
 
       <!-- URL Configuration -->
-      <div class="gsr-modal-subtitle">URL</div>
+      <div class="gm-region-modal-subtitle">URL</div>
       <!-- config.setTLD -->
-      <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setTLD" <%- setTLD ? 'checked' : '' %>>
-        <span class="gsr-control-indicator"></span>
-        <span class="gsr-control-description">Set top level domain</span>
+      <label class="gm-region-control">
+        <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setTLD" <%- setTLD ? 'checked' : '' %>>
+        <span class="gm-region-control-indicator"></span>
+        <span class="gm-region-control-description">Set top level domain</span>
       </label>
       <!-- config.setHl -->
-      <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setHl" <%- setHl ? 'checked' : '' %>>
-        <span class="gsr-control-indicator"></span>
-        <span class="gsr-control-description">Set host language (hl)</span>
+      <label class="gm-region-control">
+        <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setHl" <%- setHl ? 'checked' : '' %>>
+        <span class="gm-region-control-indicator"></span>
+        <span class="gm-region-control-description">Set host language (hl)</span>
       </label>
       <!-- config.setGl -->
-      <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setGl" <%- setGl ? 'checked' : '' %>>
-        <span class="gsr-control-indicator"></span>
-        <span class="gsr-control-description">Set region (gl)</span>
+      <label class="gm-region-control">
+        <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setGl" <%- setGl ? 'checked' : '' %>>
+        <span class="gm-region-control-indicator"></span>
+        <span class="gm-region-control-description">Set region (gl)</span>
       </label>
       <!-- config.setCr -->
-      <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setCr" <%- setCr ? 'checked' : '' %>>
-        <span class="gsr-control-indicator"></span>
-        <span class="gsr-control-description">Set country filter (cr)</span>
+      <label class="gm-region-control">
+        <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setCr" <%- setCr ? 'checked' : '' %>>
+        <span class="gm-region-control-indicator"></span>
+        <span class="gm-region-control-description">Set country filter (cr)</span>
       </label>
       <!-- config.setLr -->
-      <label class="gsr-control">
-        <input class="gsr-control-input" type="checkbox" data-gsr-config="setLr" <%- setLr ? 'checked' : '' %>>
-        <span class="gsr-control-indicator"></span>
-        <span class="gsr-control-description">Set language filter (lr)</span>
+      <label class="gm-region-control">
+        <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setLr" <%- setLr ? 'checked' : '' %>>
+        <span class="gm-region-control-indicator"></span>
+        <span class="gm-region-control-description">Set language filter (lr)</span>
       </label>
 
       <!-- Regions Configuration -->
-      <div class="gsr-modal-subtitle">Regions</div>
-      <div class="gsr-columns">
+      <div class="gm-region-modal-subtitle">Regions</div>
+      <div class="gm-region-columns">
         <!-- config.userRegions -->
         <% regions.forEach(region => { %>
           <% let { id, name, country } = region; %>
           <% let isChecked = userRegions.includes(id); %>
-          <label class="gsr-control" title="<%- name %>">
-            <input class="gsr-control-input" type="checkbox"
-                   data-gsr-config="userRegions:<%- id %>" <%- isChecked ? 'checked' : '' %>>
-            <span class="gsr-control-indicator"></span>
-            <span class="gsr-control-description">
+          <label class="gm-region-control" title="<%- name %>">
+            <input class="gm-region-control-input" type="checkbox"
+                   data-gm-region-config="userRegions:<%- id %>" <%- isChecked ? 'checked' : '' %>>
+            <span class="gm-region-control-indicator"></span>
+            <span class="gm-region-control-description">
               <% if (country) { %> <span class="flag flag-<%- country %>"></span> <% } %>
               <%- name %>
             </span>
@@ -75,9 +75,9 @@
     </div>
 
     <!-- Modal Footer -->
-    <div class="gsr-modal-footer">
-      <button class="gsr-btn gsr-btn-primary" data-gsr-onclick="save">Save</button>
-      <button class="gsr-btn gsr-btn-default" data-gsr-onclick="hideModal">Cancel</button>
+    <div class="gm-region-modal-footer">
+      <button class="gm-region-btn gm-region-btn-primary" data-gm-region-onclick="save">Save</button>
+      <button class="gm-region-btn gm-region-btn-default" data-gm-region-onclick="hideModal">Cancel</button>
     </div>
   </div>
 </div>
