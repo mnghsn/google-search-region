@@ -7,7 +7,6 @@
  */
 
 .flag {
-  box-sizing: border-box;
   display: inline-block;
   width: 16px;
   height: 11px;
@@ -16,11 +15,6 @@
   image-rendering: crisp-edges;
   image-rendering: pixelated;
   vertical-align: middle;
-}
-
-.flag.flag-wt {
-  border: 1px dotted;
-  background-image: none !important;
 }
 
 .flag.flag-ar {
