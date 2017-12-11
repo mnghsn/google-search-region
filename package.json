@@ -19,14 +19,14 @@
     "build:metajs": "inlinejs -o dist/google-search-region.meta.js src/meta.js",
     "build:userjs": "inlinejs -o dist/google-search-region.user.js src/user.js",
     "build": "npm run build:metajs & npm run build:userjs",
-    "test:lint": "standard src/**/*.js",
+    "test:lint": "eslint src/**/*.js",
     "test:build": "npm run build:metajs -- -n & npm run build:userjs -- -n",
     "test": "npm run test:lint && npm run test:build"
   },
   "devDependencies": {
+    "eslint": "^4.13.1",
     "indent-string": "^3.2.0",
     "inline-js": "^0.5.0",
-    "standard": "^10.0.3",
     "stringify-object": "^3.2.1"
   },
   "private": true,
