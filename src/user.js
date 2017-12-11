@@ -12,7 +12,6 @@ if (typeof GM === 'undefined') {
   }
 }
 
-// eslint-disable-next-line camelcase
 function GM_addStyle (css) {
   const style = document.createElement('style')
   style.type = 'text/css'
@@ -20,7 +19,6 @@ function GM_addStyle (css) {
   document.head.appendChild(style)
   return style
 }
-// eslint-disable-next-line camelcase
 GM.addStyle = GM_addStyle
 
 // =============================================================================
@@ -341,17 +339,17 @@ function delegateEvents () {
   const body = document.body
   const events = {}
 
-  events.showModal = function showModal (event) {
+  events.showModal = function showModal () {
     const modal = $('.gm-region-modal')
     if (modal) { modal.style.display = null } else { createModal(body) }
   }
 
-  events.hideModal = function hideModal (event) {
+  events.hideModal = function hideModal () {
     const modal = $('.gm-region-modal')
     if (modal) { modal.style.display = 'none' }
   }
 
-  events.save = function save (event) {
+  events.save = function save () {
     const modal = $('.gm-region-modal')
     const controls = $$('[data-gm-region-config]', modal)
     const pending = {}
@@ -408,7 +406,7 @@ function addStyles () {
 function waitForPageReady () {
   return new Promise(resolve => {
     const observee = $('#hdtb')
-    const observer = new window.MutationObserver(() => {
+    const observer = new MutationObserver(() => {
       const target = $('#hdtb-mn-gp')
       if (target) { resolve(target) }
     })
