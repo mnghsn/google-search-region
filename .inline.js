@@ -38,7 +38,7 @@ module.exports = {
       name: 'cssmin',
       transform (file, content) {
         const CleanCSS = require('clean-css')
-        return new CleanCSS({ keepBreaks: true }).minify(content).styles
+        return new CleanCSS({ format: 'keep-breaks' }).minify(content).styles
       }
     },
     {
