@@ -27,6 +27,8 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 
 ## Changelog
 
+* **v0.2.2** (2018-09-11)
+  * Fix region menu CSS
 * **v0.2.1** (2017-11-11)
   * Minor fixes for codes and UI
   * Make current region item clickable
