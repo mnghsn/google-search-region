@@ -33,7 +33,6 @@ if (typeof GM === 'undefined') {
   }
 }
 
-// eslint-disable-next-line camelcase
 function GM_addStyle (css) {
   const style = document.createElement('style')
   style.type = 'text/css'
@@ -41,7 +40,6 @@ function GM_addStyle (css) {
   document.head.appendChild(style)
   return style
 }
-// eslint-disable-next-line camelcase
 GM.addStyle = GM_addStyle
 
 // =============================================================================
@@ -443,7 +441,7 @@ function createMenu (target) {
     <% const { showFlags, userRegions } = config; %>
 
     <!-- Menu Dropdown Toggle -->
-    <div class="hdtb-mn-hd gsr-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" role="button">
+    <div class="hdtb-mn-hd gm-region-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" role="button">
       <div class="mn-hd-txt">
         <% if (currentRegion) { %>
           <% let { name, country } = currentRegion; %>
@@ -457,7 +455,7 @@ function createMenu (target) {
     </div>
 
     <!-- Menu Dropdown -->
-    <ul class="hdtbU hdtb-mn-c gsr-menu-dropdown">
+    <ul class="hdtbU hdtb-mn-c gm-region-menu-dropdown">
       <!-- User Regions List -->
       <% userRegions.map(getRegionByID).forEach(region => { %>
         <% if (!region) { return; } %>
@@ -475,7 +473,7 @@ function createMenu (target) {
       <!-- Configuration Modal Toggle -->
       <li class="hdtbItm">
         <div class="cdr_sep"></div>
-        <a class="q qs gsr-menu-config" data-gsr-onclick="showModal" title="Google Search Region">...</a>
+        <a class="q qs gm-region-menu-config" data-gm-region-onclick="showModal" title="Google Search Region">...</a>
       </li>
     </ul>
   `
@@ -493,71 +491,71 @@ function createModal (target) {
     <% const { setTLD, setHl, setGl, setCr, setLr, showFlags, userRegions } = config; %>
 
     <!-- Configuration Modal -->
-    <div class="gsr-modal" data-gsr-onclick="hideModal">
+    <div class="gm-region-modal" data-gm-region-onclick="hideModal">
       <!-- Modal Dialog -->
-      <div class="gsr-modal-dialog">
+      <div class="gm-region-modal-dialog">
         <!-- Modal Header -->
-        <div class="gsr-modal-header">
-          <div class="gsr-modal-title">Google Search Region</div>
-          <div class="gsr-modal-close" role="button" aria-label="Close" data-gsr-onclick="hideModal"></div>
+        <div class="gm-region-modal-header">
+          <div class="gm-region-modal-title">Google Search Region</div>
+          <div class="gm-region-modal-close" role="button" aria-label="Close" data-gm-region-onclick="hideModal"></div>
         </div>
 
         <!-- Modal Body -->
-        <div class="gsr-modal-body">
+        <div class="gm-region-modal-body">
           <!-- Menu Configuration -->
-          <div class="gsr-modal-subtitle">Menu</div>
+          <div class="gm-region-modal-subtitle">Menu</div>
           <!-- config.showFlags -->
-          <label class="gsr-control">
-            <input class="gsr-control-input" type="checkbox" data-gsr-config="showFlags" <%- showFlags ? 'checked' : '' %>>
-            <span class="gsr-control-indicator"></span>
-            <span class="gsr-control-description">Show country flags</span>
+          <label class="gm-region-control">
+            <input class="gm-region-control-input" type="checkbox" data-gm-region-config="showFlags" <%- showFlags ? 'checked' : '' %>>
+            <span class="gm-region-control-indicator"></span>
+            <span class="gm-region-control-description">Show country flags</span>
           </label>
 
           <!-- URL Configuration -->
-          <div class="gsr-modal-subtitle">URL</div>
+          <div class="gm-region-modal-subtitle">URL</div>
           <!-- config.setTLD -->
-          <label class="gsr-control">
-            <input class="gsr-control-input" type="checkbox" data-gsr-config="setTLD" <%- setTLD ? 'checked' : '' %>>
-            <span class="gsr-control-indicator"></span>
-            <span class="gsr-control-description">Set top level domain</span>
+          <label class="gm-region-control">
+            <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setTLD" <%- setTLD ? 'checked' : '' %>>
+            <span class="gm-region-control-indicator"></span>
+            <span class="gm-region-control-description">Set top level domain</span>
           </label>
           <!-- config.setHl -->
-          <label class="gsr-control">
-            <input class="gsr-control-input" type="checkbox" data-gsr-config="setHl" <%- setHl ? 'checked' : '' %>>
-            <span class="gsr-control-indicator"></span>
-            <span class="gsr-control-description">Set host language (hl)</span>
+          <label class="gm-region-control">
+            <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setHl" <%- setHl ? 'checked' : '' %>>
+            <span class="gm-region-control-indicator"></span>
+            <span class="gm-region-control-description">Set host language (hl)</span>
           </label>
           <!-- config.setGl -->
-          <label class="gsr-control">
-            <input class="gsr-control-input" type="checkbox" data-gsr-config="setGl" <%- setGl ? 'checked' : '' %>>
-            <span class="gsr-control-indicator"></span>
-            <span class="gsr-control-description">Set region (gl)</span>
+          <label class="gm-region-control">
+            <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setGl" <%- setGl ? 'checked' : '' %>>
+            <span class="gm-region-control-indicator"></span>
+            <span class="gm-region-control-description">Set region (gl)</span>
           </label>
           <!-- config.setCr -->
-          <label class="gsr-control">
-            <input class="gsr-control-input" type="checkbox" data-gsr-config="setCr" <%- setCr ? 'checked' : '' %>>
-            <span class="gsr-control-indicator"></span>
-            <span class="gsr-control-description">Set country filter (cr)</span>
+          <label class="gm-region-control">
+            <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setCr" <%- setCr ? 'checked' : '' %>>
+            <span class="gm-region-control-indicator"></span>
+            <span class="gm-region-control-description">Set country filter (cr)</span>
           </label>
           <!-- config.setLr -->
-          <label class="gsr-control">
-            <input class="gsr-control-input" type="checkbox" data-gsr-config="setLr" <%- setLr ? 'checked' : '' %>>
-            <span class="gsr-control-indicator"></span>
-            <span class="gsr-control-description">Set language filter (lr)</span>
+          <label class="gm-region-control">
+            <input class="gm-region-control-input" type="checkbox" data-gm-region-config="setLr" <%- setLr ? 'checked' : '' %>>
+            <span class="gm-region-control-indicator"></span>
+            <span class="gm-region-control-description">Set language filter (lr)</span>
           </label>
 
           <!-- Regions Configuration -->
-          <div class="gsr-modal-subtitle">Regions</div>
-          <div class="gsr-columns">
+          <div class="gm-region-modal-subtitle">Regions</div>
+          <div class="gm-region-columns">
             <!-- config.userRegions -->
             <% regions.forEach(region => { %>
               <% let { id, name, country } = region; %>
               <% let isChecked = userRegions.includes(id); %>
-              <label class="gsr-control" title="<%- name %>">
-                <input class="gsr-control-input" type="checkbox"
-                       data-gsr-config="userRegions:<%- id %>" <%- isChecked ? 'checked' : '' %>>
-                <span class="gsr-control-indicator"></span>
-                <span class="gsr-control-description">
+              <label class="gm-region-control" title="<%- name %>">
+                <input class="gm-region-control-input" type="checkbox"
+                       data-gm-region-config="userRegions:<%- id %>" <%- isChecked ? 'checked' : '' %>>
+                <span class="gm-region-control-indicator"></span>
+                <span class="gm-region-control-description">
                   <% if (country) { %> <span class="flag flag-<%- country %>"></span> <% } %>
                   <%- name %>
                 </span>
@@ -567,9 +565,9 @@ function createModal (target) {
         </div>
 
         <!-- Modal Footer -->
-        <div class="gsr-modal-footer">
-          <button class="gsr-btn gsr-btn-primary" data-gsr-onclick="save">Save</button>
-          <button class="gsr-btn gsr-btn-default" data-gsr-onclick="hideModal">Cancel</button>
+        <div class="gm-region-modal-footer">
+          <button class="gm-region-btn gm-region-btn-primary" data-gm-region-onclick="save">Save</button>
+          <button class="gm-region-btn gm-region-btn-default" data-gm-region-onclick="hideModal">Cancel</button>
         </div>
       </div>
     </div>
@@ -586,23 +584,23 @@ function delegateEvents () {
   const body = document.body
   const events = {}
 
-  events.showModal = function showModal (event) {
-    const modal = $('.gsr-modal')
+  events.showModal = function showModal () {
+    const modal = $('.gm-region-modal')
     if (modal) { modal.style.display = null } else { createModal(body) }
   }
 
-  events.hideModal = function hideModal (event) {
-    const modal = $('.gsr-modal')
+  events.hideModal = function hideModal () {
+    const modal = $('.gm-region-modal')
     if (modal) { modal.style.display = 'none' }
   }
 
-  events.save = function save (event) {
-    const modal = $('.gsr-modal')
-    const controls = $$('[data-gsr-config]', modal)
+  events.save = function save () {
+    const modal = $('.gm-region-modal')
+    const controls = $$('[data-gm-region-config]', modal)
     const pending = {}
 
     controls.forEach(control => {
-      const attr = control.getAttribute('data-gsr-config').split(':')
+      const attr = control.getAttribute('data-gm-region-config').split(':')
       const [name, value = control.value] = attr
 
       if (typeof config[name] === 'boolean') {
@@ -621,8 +619,8 @@ function delegateEvents () {
     })
   }
 
-  $delegate(body, '[data-gsr-onclick]', 'click', event => {
-    const name = event.target.getAttribute('data-gsr-onclick')
+  $delegate(body, '[data-gm-region-onclick]', 'click', event => {
+    const name = event.target.getAttribute('data-gm-region-onclick')
     const callback = events[name]
     if (callback) { callback.call(event.target, event) }
   })
@@ -639,34 +637,35 @@ function addStyles () {
      * Region Menu Dropdown CSS
      */
     .hdtb-sel{font-weight:700}
-    .gsr-menu-dropdown{max-height:80vh;overflow-y:auto}
-    .gsr-menu-dropdown .hdtbSel a{padding:0!important}
-    .gsr-menu-config{cursor:pointer}
+    .gm-region-menu-dropdown{max-height:80vh;overflow-y:auto}
+    .gm-region-menu-dropdown .hdtbItm.hdtbSel{padding:0}
+    .gm-region-menu-dropdown .hdtbItm.hdtbSel a{background-color:transparent}
+    .gm-region-menu-config{cursor:pointer}
     /*!
      * Configuration Modal CSS
      */
-    .gsr-modal{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background-color:rgba(255,255,255,.75)}
-    .gsr-modal-dialog{display:block;width:800px;max-width:80vw;max-height:80vh;overflow:auto;margin:32px;padding:32px;border:1px solid #c5c5c5;box-shadow:0 4px 16px rgba(0,0,0,.2);background-color:#fff;font-size:13px}
-    .gsr-modal-header{display:flex;justify-content:space-between}
-    .gsr-modal-footer{text-align:right}
-    .gsr-modal-body{margin:16px 0}
-    .gsr-modal-title{font-size:16px;font-weight:thin}
-    .gsr-modal-subtitle{margin:16px 0;font-size:13px;font-weight:700}
-    .gsr-modal-close{display:inline-block;width:10px;height:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKBAMAAAB/HNKOAAAAElBMVEX////39/e9vb2zs7PCwsLv7++5ffrDAAAAL0lEQVQI12MIEWBgdGVwVmQQMmEQMhJUVmRgVFYyEmBgEDJWZICQEBGILEQlRBcAq64FtxSToc8AAAAASUVORK5CYII=);background-repeat:no-repeat;cursor:pointer}
-    .gsr-columns{max-height:300px;overflow-x:auto;-webkit-column-count:5;-moz-column-count:5;column-count:5}
-    .gsr-control{display:block;margin:4px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .gsr-control-input{display:none}
-    .gsr-control-indicator{display:inline-block;margin:0 4px;width:10px;height:10px;border:1px solid #c6c6c6;border-radius:1px;vertical-align:middle}
-    .gsr-control-indicator::after{content:" ";display:none;position:relative;top:-3px;width:15px;height:15px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAtklEQVQ4y2P4//8/A7Ux1Q0cxoaCADIbCUgCMTvVXAoE5kA8CYidyXYpGrAH4iVAHIXiCwoMDQTimUBcBsRMlBrKCsTpUANzkC0j11BuIK6EGlgKsoAkQ4FgChD7AzELVI8YEDdDDawDYk6YQaQY6gg1oAqILYC4D8oHGcyLbBAphoJAKtQgGO4EYiHk2CLHUJAXm6AG9gCxNHoSIMdQEJCFGqiALaGSayjMxQwUGzq0S6nhZygA2ojsbh6J67kAAAAASUVORK5CYII=);background-repeat:no-repeat;background-position:-5px -3px}
-    .gsr-btn,.gsr-control-input:checked~.gsr-control-indicator::after{display:inline-block}
-    .gsr-control:hover .gsr-control-indicator{border-color:#b2b2b2;box-shadow:inset 0 1px 1px rgba(0,0,0,.1)}
-    .gsr-btn{min-width:70px;height:27px;padding:0 8px;border:1px solid;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;outline:0}
-    .gsr-btn-default{border-color:rgba(0,0,0,.1);background-image:linear-gradient(#f5f5f5,#f1f1f1);color:#444}
-    .gsr-btn-default:hover{border-color:#c6c6c6;background-image:linear-gradient(#f8f8f8,#f1f1f1);color:#333}
-    .gsr-btn-default:focus{border-color:#4d90fe}
-    .gsr-btn-primary{border-color:#3079ed;background-image:linear-gradient(#4d90fe,#4787ed);color:#fff}
-    .gsr-btn-primary:hover{border-color:#2f5bb7;background-image:linear-gradient(#4d90fe,#357ae8);color:#fff}
-    .gsr-btn-primary:focus{border-color:transparent;box-shadow:inset 0 0 0 1px #fff}
+    .gm-region-modal{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background-color:rgba(255,255,255,.75)}
+    .gm-region-modal-dialog{display:block;width:800px;max-width:80vw;max-height:80vh;overflow:auto;margin:32px;padding:32px;border:1px solid #c5c5c5;box-shadow:0 4px 16px rgba(0,0,0,.2);background-color:#fff;font-size:13px}
+    .gm-region-modal-header{display:flex;justify-content:space-between}
+    .gm-region-modal-footer{text-align:right}
+    .gm-region-modal-body{margin:16px 0}
+    .gm-region-modal-title{font-size:16px;font-weight:thin}
+    .gm-region-modal-subtitle{margin:16px 0;font-size:13px;font-weight:700}
+    .gm-region-modal-close{display:inline-block;width:10px;height:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKBAMAAAB/HNKOAAAAElBMVEX////39/e9vb2zs7PCwsLv7++5ffrDAAAAL0lEQVQI12MIEWBgdGVwVmQQMmEQMhJUVmRgVFYyEmBgEDJWZICQEBGILEQlRBcAq64FtxSToc8AAAAASUVORK5CYII=);background-repeat:no-repeat;cursor:pointer}
+    .gm-region-columns{max-height:300px;overflow-x:auto;-webkit-column-count:5;-moz-column-count:5;column-count:5}
+    .gm-region-control{display:block;margin:4px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .gm-region-control-input{display:none}
+    .gm-region-control-indicator{display:inline-block;margin:0 4px;width:10px;height:10px;border:1px solid #c6c6c6;border-radius:1px;vertical-align:middle}
+    .gm-region-control-indicator::after{content:" ";display:none;position:relative;top:-3px;width:15px;height:15px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAVCAYAAACpF6WWAAAAtklEQVQ4y2P4//8/A7Ux1Q0cxoaCADIbCUgCMTvVXAoE5kA8CYidyXYpGrAH4iVAHIXiCwoMDQTimUBcBsRMlBrKCsTpUANzkC0j11BuIK6EGlgKsoAkQ4FgChD7AzELVI8YEDdDDawDYk6YQaQY6gg1oAqILYC4D8oHGcyLbBAphoJAKtQgGO4EYiHk2CLHUJAXm6AG9gCxNHoSIMdQEJCFGqiALaGSayjMxQwUGzq0S6nhZygA2ojsbh6J67kAAAAASUVORK5CYII=);background-repeat:no-repeat;background-position:-5px -3px}
+    .gm-region-control:hover .gm-region-control-indicator{border-color:#b2b2b2;box-shadow:inset 0 1px 1px rgba(0,0,0,.1)}
+    .gm-region-control-input:checked~.gm-region-control-indicator::after{display:inline-block}
+    .gm-region-btn{display:inline-block;min-width:70px;height:27px;padding:0 8px;border:1px solid;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;outline:0}
+    .gm-region-btn-default{border-color:rgba(0,0,0,.1);background-image:linear-gradient(#f5f5f5,#f1f1f1);color:#444}
+    .gm-region-btn-default:hover{border-color:#c6c6c6;background-image:linear-gradient(#f8f8f8,#f1f1f1);color:#333}
+    .gm-region-btn-default:focus{border-color:#4d90fe}
+    .gm-region-btn-primary{border-color:#3079ed;background-image:linear-gradient(#4d90fe,#4787ed);color:#fff}
+    .gm-region-btn-primary:hover{border-color:#2f5bb7;background-image:linear-gradient(#4d90fe,#357ae8);color:#fff}
+    .gm-region-btn-primary:focus{border-color:transparent;box-shadow:inset 0 0 0 1px #fff}
     /*!
      * Generated with CSS Flag Sprite Generator <https://www.flag-sprites.com/>
      *
@@ -674,8 +673,7 @@ function addStyles () {
      * These flag icons are available for free use for any purpose with no
      * requirement for attribution.
      */
-    .flag{box-sizing:border-box;display:inline-block;width:16px;height:11px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABNCAMAAABZlpyTAAAC+lBMVEUAAAD6+vr09fX+/v739/jx8vLwAgH8AADoAADhAQDzFRTcAADyMjIAAgHs7uz8Wlv2Kir1ISH6U1T6TEvo6en5RUX4Pz/4OTn4MTH390H19DH+e337YmTk5OPMAADFAAD88vDgREb36urrOzzsRUbUAQHxfnvz8xy6AADP0NHlMjL4+VP8dHTd3d3wU1PeOTnaKyz15OL8a2zkGBcCAZHoKCipAABGXKLuc3LU2dhAQDkABaXwamfwXlznX1sBgwJTnFP721D50TXEw8M3TZgAYgRUf9r65Xz41kVKc9depl3iUVPyyiYCPr15snr44m7oT0oFEMNpq2nssQDn0dNlaMBYulhkoN1TltjmamlAr0AANADd7/nZ3+2BpdxjjNwAJLL4pKSjtNlabKr84F0AIAA5dfkvXdD8jIlBm0L5X0AvkjMATwDn6vR4rOOSmtY7a9V2l9MJWMgAAXwAAVTw29uyTku3tLAsdqiAvIzvjIsDDGZMtkyoNzX0RiHAzeuStOLzl5YjPI/7/G9GjUUAQwB5luL5zs5WgMlqgbkBAR4efx3XGxt/nvmuuui7wtV8fsaaosPkv8JQT070fy6i3v2I0/m2xOhAc7c4Oapap3gAADv8vgA6htD3srFDi7A6pVsxqDDbrxR+AABBQdT5wL736pd5eXm7XmPylUwenxxUVbVFR7CkqJ1swm+ngS8AuQCbt/3I1Oprb9pMXdQsLMpgnb8ZX6QoKKH2eFPapaZ6yXjiYUw/gS7waRhKSvwyMvcBheXfkABkivUZqvJwxvCF5YVLs2rj2le7zrUPJZPYzYpbW1slJSVFv/21cowCOXvJdHeNYFH25Qje4ARaAAI0AACFhevago2UhX2AKD8AAC7BOSb60ACZmfoVFffc0Mqq0a6WgKKKWoJw4HBqamrPO2AAAETwsUPXzUDe7uBnMGtb21vGIkqhJib898Savp3MWURqljuWEBCVp1n2sWuw31NB1UG7rzJtb/cACeVxM4OYzhWqkwCCShWsAAAAAXRSTlMAQObYZgAAE9NJREFUaN6FmQlYVFUUx2dhcghmRBiQbWDYhiUGRFlmZE1AQQKBICIDncEIU1kUQiAFTDZNNis1imxBs8QSy8LMMlsELNpTbFHJtKy0Utu/r3POfW82+r5+fdV3uffd83/33ft/550RvG/kLWKaiRuQD8+NTkyMXhpf09BQHVPd1ydDPgYCP6Z+ESKRSOSAQqFUpjJWrlzZ0rJ48eK7wvz8o7gx8gC7AK95jFsYTz4peP8hcx5+a5qHh0doaOjs2Z6e0x0dnaQpvcpDh3prDB0dHY1DhpI+2W7gfuQm6heJOYSAjY0mta6uLisr6/r13NzchQuT7rLX65uh09cXegu1Wq9597OLETc3N07AwxxvP3x0msf06Tizs7PLTFcHJ6lXvbqwUFtYWFIS02FIQQEnTpxgF1O/yDy8CAVgYBywfPnyFUl3+emb1dBbr4ZF8Mko9D4yzLgHWX/PjYIhyZ3mGFz1ZQitw+w4tXSiV3/ypP7keElPTEyKoeM0CthK8d1dHRycpTqJHPmeYwQELLx+04HS0gPuf68gAfVqYVteXEJvryTcpzBoHt07Xe/uHuj+pEBB+i8vWnTZRgToFKb7kUgUImV3Xs/Jk4becz1dXSnw7yYQsHUru95hxgwXaeKrt91233133HHHE0888eyzd7SkZsHtjxSt2lZa4h64YrnMXl+vFcLaFyb4SEJ8EoKO3MOzHpkDAjDcgptvXoQbRRRMbbaeEjkIuNTTce5cSce5GENJSkxPDAjYunUr0z9jxo0zpYn7TPFBwOLUV+H+jpVu6WwsDgwM/EUW1azWCuvj48P8C+WzwjOCbnEj3IHAwI8DYQUo3uVly3ZBfBLAxxfJQYCmoaMEiIH1T0npSQEB57duncvWb8aNN9rbJu67DwRQfOCJlpVZt7m59ZSWlnYOBgY+uwIFxAl9CzMyMiJQQPQR/v4Zcyz2QFERtwdwA2jjALUtCDAMsfgbNmwgAXPnMv03ggDvlqu/MF5DfpGtzEpKuu7+R2npH4F/b968XDanWZtgI5If6lfI5Q/Myoi+xXj/wCewAm89RNuf5+g0T9z+rvB8Yf4b7G2rO0qKVvVQ/JgeEjAXBND12O9tPX5lbtLy5U+4u7kFbgZWyGzrtQmwtjVKWM8HZvlwK7CeZw4IMDuGJICdQheXmfb29g521R0dPV3sKXQV9aTIZCeMpwD7va3Ht8AphPN//TqewhUoQF0IAuRIuI9P9C14rWkJwAfeIo7y3EBIAVtbWzs7u+oLF/r6Tp/eBMg2yDg+Iby9vb2irceT/QH8UDu7AG9dcHBwMhANoP2ZI5hmQoCsJvAowDEA4QHIei/AGwgKutXEm8jqJksrhh1iAekT+xoVZnIsBWIBAVgvgNZ7AxNQfmd5eZPxLMoD1AvU1xZdKywsTEiArRx06wJgEbBs2bKbb74ZBBTxVkhWPLeWGCROnZp7g1qtDhWrQuPi4CiGhQVklhMFyO233x4pQOuF652ceQFwGm4vMFqrImDBTcsS9qTt8fEJD581ywcEsMhpaWnwSkkDAeVDJitGAbuB8+dhp8BioID4+HixKszf38/PPsofBEBg5DHEKEDo7DKdE9B0Z9PtBbwViBQB6mV7Mi6mDVN82MUogOLjK40EFJc3io3jNVtrTwEfIRMTE0xAGAig+FH+XiCAxWegAE4/L+BtGFDA5iMB2oQMXACK/0A4CmDxTQKKCxqN43Vf9NPznA4Hw8/eXr1OGgoLL1T5QyMqKsrPi6ycNsp7wFwZCmCPjxOQWQ7yClSAxBfIC9BmZGTz8UFATuv8+fPT0ysrK+8GKmNRQFXByWagvr6+OeCL/tDZniw+RFSvM20PsnolWTnF5wWEcv2OUhIwbbaTE2ctZLVe2gwfHz4+CTCLv5oEVFWN0/3NmTMnxPsLPYvvgvHnaNdZxEcB583ibwIBENAZ+l0dnHkBpvgkoNAsfsCs6JwlxvBwXO+OzWwyxicBz++6du3aHuRB4No6aRxsP6GvH9+vNNMDJAvQSqHtMMOFCbC0VhJA8R/A+CAgACcMDwmBv9CKgACIH8Xmtw3x/n0XHFDaJLcAi54HAX5+Nr72fL/SIj4JoAwIrJQJsLZWbzr+uAq0DNF2dJ6zs2HaECAos3g8DNr+rB0FAhDeLEAADrfxDeP7mQCzFTCzUhJgba1of0A0D/wpIID5YhCS+Sn8AeC98nkrpDBLgDzPOECj0el0wUAyQ2CdBa8CMpdmFjF0XVWIRoPXkK6exqr2jo6i8fGi7dtjOiarMjN1OnNrJe1MPimznh91mOmPFlhnwavg3BQXF/N7V1c1NNTYSEsmaS4rU9v29IuLDAZxWZm4oqKxTNyUmS4Wp6fjWBqkk6oBLSYT9Ki8YH6EjyD1om4tb+0gwDILJgFLlizhrTW4amjbtm30olGotXFqu45G/YC4QuzpKa7Sl4kNG5RipBHYBjR2S9XxGLmsGR86OB+bv/ztgrdpfhCQQJE5a48WBGKKfpzPUt0+AQFCEsCcrasKJu6kV51SG4cCDFV5YJ7g37N9i/Z2jzIBTcVAa2tVcSwKgF2pGnCE+CSA7q/NpW0mZtEkIIO3Fl7AcMIuFh8EZBYvAeZzdjc/EgR0drJXLayqNqBITDg6sf8P4SOorOQ2tVwSLNVC+LaBtgHfNr+oOX5eNMoG40vI2s2+IqiNAgbi8/rTMD4KWIoCjG47P3JJY2engb3t4+LDtAHjZXhO0S3xjpwmQIAQBvIsRQH+el+9fkANR9/Pm8KJIH6bhKzY2ppRQMSesIg0liK5kwCKn47Tpq9p39ZpIAEKRfzh7DgvbgVcZrJbGVJYnGtaAfAEfVtbDbNmiidqc21zkJMVW8RnAtxG0i7WYnwSUAR9EJ+fsKt9m8FgoC2gPJydneAVU5FfpPIUu7qKxT61o881NOEpoS3INiFZb1hNW32EHwlY3VQAPO7qsJ29/1fmLmfZ4mYgcYVsivUWgTy4f4rPC2iiZEuZDQK89xrE6vp2sYODeIe4OaGqAVYInlETUAEYRm3Rev3CQqLCyHqDVmPyY5aAtOSaxUcB1tYLAvAUGFdgO0xvoFOojIMD5N0kVnd1dIidnMQlz3UJD5cUwaBVPIoigy0dArJmZtV8BkYqQADmzElJqAKRTbFetL/YyMgujp7t219++eVkyvLIv6o+ihkdHR2amBhqaGj4oOkS2B8SycP8z5jDeptMkvXzSTOPwJbFNV6WiChxyTX4TG5UEEpAgzYe/KiRWwkaz3r/s2DB2gDX/pKHm0JgWw+oeX9M8E58FRDSXt0DSFfvZ2xh5DxqlRXTeHa2+IKFRZYMbV2yCNuS2mRof4nXm6ZAAWTc6I/Z2fD5jJ/bt0nwehUkFHukCssCRPCjVlkxjWf9ZgWLAQ+PfhyPAhSndmvENW1C3fndGhSAgfnE9mYSEIcvhsMYP5wXIAR8zQQIt2xhRzd4Hr3ux3p6xhYBC26l8UwfWS0J0KNPNeN4EKA5Vasqc3IOVdWeTxZpnlxwnPEdcvwfgR2+HOCEM3POJgH3SXA+EHCEEwAP4KtjW0RAMlsNQ89QhQ05GY1n64MFCxLg6wjxZ86swSwZ2gpRv7OLn1+zXANtHM9/0GM9QRA30K8H+Kz2ASo4SGA+EHDkyINSKlisOiZZdWwVBOQFVHR1VzArpfHs+VDBQgL9bRjf1WEA+nXYFvb4++S/OC7CtnVBQ2BhjTQh9Mux7XsEBNgqsX//sa+OwQpIUACNb6yq6jIbz66nLBq3j68zWptDDRY8oK0QdebnV95tkOtIgDE+8MRigdAyS9Uk7oN+ObR5Aax/C4RHkhPrcukDHLwEWHgXjWfXUxZN26cZrVVN7waJULd7UFReWblk1eCJWklwdOHPwBc8Twks4pMA0CfHdgQJsM5iU+v4+KwMR+NZP1m5nMbrpzs2S0iAXKjZfT7YZmhIEnzifLAkmKw6xJhFBwlsLN9mmtTbALYCDwJ2f24hjnHkpNZlAbgKJOMuGs+uJyuXc4IBToAwuVaBf1AM1kLbjjI13qpnBQlEJtNSaoBErLOOYNZaSxZJ9odNBCyZyrAtrAyL0HjWS+NpJg3LfRFTm/3B3KgRwa9PmfgUSEUU9PKhcTmRv/8emZOT48VdaZ3lgpOLV4tNXv7hZMPERPWlZxqqq6uhttJHI30jEBo/GLmG0QDFZ0Dw1IeMZ5B77/00tQ4gK7YpBIIid+2qHRurOCBRAfCxap3l2qrV4iaxVotZcEJYtndDrwZqy3k9HR0l56CwdJqybjOrdouo6O7uzkeeAy6AAAyMrFu37icU8MgjjwhxvE2GD1jzRxB/wYKxp8Eo/cEpvad5eHqakjIUEC8uF/Pv32zvB6AwWajWfhgTM/nhJFTVKCs2s2qVWNwJoffu3btjx45X9jIBFB7j/3TvZ0yA8MwZqC0zAT0kwBeIiPDtnQF1RNMShHICuPhR/kFUW+4/OQ6FvckNk0yAo5lV2whVqqF8Lv4re/sEeTBtDZJHHGICzhz6KBkEhGfAI1jQPTaW/7SPP3h1SEaQxDKr1WGz3NRWlPSeGx/v6T2X8kzMhslnJjdNC4WVN7fqy/ffr5J0s/iv7OgTWGepK1GAjbL2lEYUHg4CcirGxp4GFLAAuAJyy/HBUCMqb4V8h+XSS2IvnYuZnEwpAQHPbNhwKQUEwNMys2rV5Ztuuiy8/9xfwKVLf8mmrAAK2GkzeGVwUAJvp4wgLy37jAihT3KfILmldQejnlYzK2/oiOEKu8BoiowKHmZWDSuwS6UqMxZABE89wz//n3799dd1nzEBysFBjYS+XHxp9yMRSO9oVXt7+3Zk7dqXX95ebReXLSwQhoRwBYig6g5T/EskAHarhVVfVrV5svi8AD4+CWjJemTnThGOZwLstNnZ9Pi5Es2ag1xwYm2fXZy/sMCGxbezC4kGAXz8e++9BAIw67a06n5nYxZOAvhTSDpAAOwBEX0N+wDREXD/RATRu+ZgOy0Bk7G2LyAuXlhuA/mEXzg+pOjqEoB7CpMpG2SUdZtZdeDlMossXAD2h3zGQx4bTNXdaGRgoBfoP8RDFkYeduECOh3Yn3ypnGyVyhhof6eptiwjyP5gc8EkZNV7rLJwgYqDu8kacHrAZLWZOcDHyJfUtmGIuK+BIhhMrwaAsu0PAMh34b9MJ1euAJhb26gsIwpUlllszcosxFSwyGkFzH6ms7EcXwTjkVwA346yD+A7HfLOg4zHL0jbhP1l/XpjwcLqeiUJMFkLCli48Op3Fy+yz18UAOfb7Gc6G4vxKCB3YW5uErBx48bXUMDBg5DyPo6sXQsCVAPagXh1vT9XsFCJ9Zj8cdeTAAtrywMBx48P33Px4kxWUKDKqNnPdK/v/4rxOfLVny1ZC6+MnM06e3Yka6Ru80YSACk3xQcBfVJVRLy2rY3FBwEvdqo9I8qmV7QSFTkkgI/PBCR9N1yTN3wR4qN1kgCzn+m+/uN14g3k6zdIwNmRKyNX6nKvoIBHF5hq2VhLlvar9PH4xU5W4eeds0XbpoqY3p2e/iJwAH4vKDNVqJyd46UtJODOwot+DmidKCA93fQzHS+Awn9NApLO6q7U1V1ZmJu1EQUsMsYH5r0pxQ8fLBtxb9OcVi2uwAGKf3d67JTacEtu0tXfh9Xffce1c1qhVmH2Mx0J4OOTAP75v7Z5MxOQxuIzASpL687LaQ3uPnCgd346xkcB1rXhxbkbN/4Om/AI16baMMX/mNpBJ78lfiS+fWpxbtLGsyMjI2fhP5s3vyb74ODjj0P8tQA5pcoy6z0TdLI+70AwTsKuty5QkIDXVrjaszYJqKxkP3NS+7/GwxVw/1eSNqcyAfNIAFn1JpUpPgmA60P71abrpxQoFlP9wNSOXWI8BdSeMj6XLtjIyZA1wOmHTUCnANjka5l1n7G+fkqBgvmZqR2L3EpQ23o8DjcH7Q9+T2N+DDB/ranRgB2fAayvF7xghXXWa91eyoi15dr5HCWhw4cR6/GJie+ecTBrC6x54R3kG+QH4FnLrHe61LqWvLS4uLOzuLUqjmvni/eL9wvxH1roQevxf9fVnVX0m9r/IQAiI78hPySKLa1WQVmtXu/IaskooEIorpjf7s+18/eXMkI94aO87Geu9jw8zPX/s2vfI/u+18/mrxdY89vZdwi2Cu+8sNdQwegm1uCE/b4RA87MmkmAsKK93Z+1QYCwVFQqLz2KX1g3iZK52vDFNK5fNrZo37vv6hRtAwMD/f0DhQJrbCytWLOmGz4XWNIM7DgNE3oIPZxDXSKcyYqhklqFWZkfs2p+BY6udnSGv8AKYBaclubmdss8V+yX7b56HBQgO3fufLdlqgDLLFeHAjBrp/ijICDUcUAFyxchkniCFaOAdsQe4mM7X1gqKZUfVWZSLfHOWsqCndA611M//EwHCiA41QV3LhZYIzKPjwLyTfc/OrpjEzilXhU607Nf3UZWbG3dsAJ4/5lLaUU87mX9D7q7P8j6ZeevHr8K8RnvThXwEnuvHuCIjeQ/3Z5D8qvRqvvhILty1mxt3UohCpezWqom4hTrd79nfSDrl43h/eu+b+xEtuULrIk9AF8dLyE5wEtrrAsWZL1lZRj/P604dMBj9nQn3OHwh2mhH1H/zPUOM6CN/f8sgts/+/nT/Pz/IeBFAEQwGWumwZGlMxsW5uTv729tvVPaOpPPylcplcPW/X/ve6RO9/mLxvmnCgAiiTWEtVX+X/swA+o+kNrDT+bW/ampK3ooAosRaR3/X9CXKmevpNTKAAAAAElFTkSuQmCC) no-repeat;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated;vertical-align:middle}
-    .flag.flag-wt{border:1px dotted;background-image:none!important}
+    .flag{display:inline-block;width:16px;height:11px;background:url(data:image/png;base64,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) no-repeat;image-rendering:-moz-crisp-edges;image-rendering:crisp-edges;image-rendering:pixelated;vertical-align:middle}
     .flag.flag-ar{background-position:0 0}
     .flag.flag-at{background-position:-16px 0}
     .flag.flag-au{background-position:-32px 0}
@@ -746,7 +744,7 @@ function addStyles () {
 function waitForPageReady () {
   return new Promise(resolve => {
     const observee = $('#hdtb')
-    const observer = new window.MutationObserver(() => {
+    const observer = new MutationObserver(() => {
       const target = $('#hdtb-mn-gp')
       if (target) { resolve(target) }
     })
