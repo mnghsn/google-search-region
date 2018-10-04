@@ -28,18 +28,18 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 ## Changelog
 
 * **v0.2.2** (2018-09-11)
-  * Fix region menu CSS
+  * Update injected CSS naming convention.
 * **v0.2.1** (2017-11-11)
-  * Minor fixes for codes and UI
-  * Make current region item clickable
+  * Minor fixes for codes and UI.
+  * Make current region item clickable.
+  * Fix Korean country code.
 * **v0.2.0** (2017-11-05)
-  * Apply script to encrypted.google.com
-  * Use modal dialog to provide more options
-  * Remove recent regions
-  * Fix Korean country code
-  * Update readme and screenshots
+  * Add modal dialog to provide more options.
+  * Remove recent regions.
+  * Make the user script also run in `encrypted.google.com`.
+  * Update readme and screenshots.
 * **v0.1.0** (2017-10-05)
-  * First release
+  * First release.
 
 ## License
 
