@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Google Search Region
 // @namespace       jmln.tw
-// @version         0.2.1
+// @version         0.2.3
 // @description     A user script that lets you quickly switch Google search to different region.
 // @author          Jimmy Lin
 // @license         MIT
@@ -479,7 +479,7 @@ function createMenu (target) {
   `
   const html = renderTemplate(template, data)
 
-  target.insertAdjacentHTML('afterend', html)
+  target.insertAdjacentHTML('beforebegin', html)
 }
 
 /**
@@ -745,8 +745,11 @@ function waitForPageReady () {
   return new Promise(resolve => {
     const observee = $('#hdtb')
     const observer = new MutationObserver(() => {
-      const target = $('#hdtb-mn-gp')
-      if (target) { resolve(target) }
+      const target = $('.hdtb-mn-hd')
+      if (target) {
+        resolve(target)
+        observer.disconnect()
+      }
     })
 
     observer.observe(observee, { childList: true, subtree: true })
