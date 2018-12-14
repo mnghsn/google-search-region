@@ -27,6 +27,8 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 
 ## Changelog
 
+* **v0.2.3** (2018-12-14)
+  * Fix for new Google material design seach page.
 * **v0.2.2** (2018-09-11)
   * Update injected CSS naming convention.
 * **v0.2.1** (2017-11-11)
