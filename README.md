@@ -6,11 +6,11 @@ A user script that lets you quickly switch Google search to different region.
 
 ## Features
 
-_Google does have an option to search in different region_, but it's hidden in "Advanced Search" page. This user script adds a region menu to Google search page so you can access it directly.
+_Google does have an option to search in different region_, but it's only available in "Advanced Search" page. This user script adds a region menu to Google search page so you can access it directly.
 
 ![Google Search Region (Menu)](https://raw.githubusercontent.com/jmlntw/google-search-region/master/screenshot-menu.png)
 
-You can configurate regions and URLs by clicking **"..."** in dropdown menu.
+You can configure regions and URLs by clicking **"..."** in dropdown menu.
 
 ![Google Search Region (Modal)](https://raw.githubusercontent.com/jmlntw/google-search-region/master/screenshot-modal.png)
 
