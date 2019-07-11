@@ -12,14 +12,14 @@ if (typeof GM === 'undefined') {
   }
 }
 
-function GM_addStyle (css) {
+function addStyle (css) {
   const style = document.createElement('style')
   style.type = 'text/css'
   style.textContent = css
   document.head.appendChild(style)
   return style
 }
-GM.addStyle = GM_addStyle
+GM.addStyle = addStyle
 
 // =============================================================================
 // Helper Functions
