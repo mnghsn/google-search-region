@@ -1,19 +1,20 @@
 {
   "name": "google-search-region",
   "version": "0.2.3",
+  "private": true,
   "description": "A user script that lets you quickly switch Google search to different region.",
-  "author": {
-    "name": "Jimmy Lin",
-    "email": "jmlntw@gmail.com"
-  },
-  "license": "MIT",
   "homepage": "https://github.com/jmlntw/google-search-region",
+  "bugs": {
+    "url": "https://github.com/jmlntw/google-search-region/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jmlntw/google-search-region.git"
   },
-  "bugs": {
-    "url": "https://github.com/jmlntw/google-search-region/issues"
+  "license": "MIT",
+  "author": {
+    "name": "Jimmy Lin",
+    "email": "jmlntw@gmail.com"
   },
   "scripts": {
     "build:metajs": "inlinejs -o dist/google-search-region.meta.js src/meta.js",
@@ -30,6 +31,5 @@
     "inline-js": "^0.8.0",
     "inline-js-core": "^0.5.0",
     "stringify-object": "^3.3.0"
-  },
-  "private": true
+  }
 }
