@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Google Search Region
 // @namespace       jmln.tw
-// @version         0.2.3
+// @version         0.2.4
 // @description     A user script that lets you quickly switch Google search to different region.
 // @author          Jimmy Lin
 // @license         MIT
@@ -9,8 +9,6 @@
 // @supportURL      https://github.com/jmlntw/google-search-region/issues
 // @include         https://www.google.*/search?*
 // @include         https://www.google.*/webhp?*
-// @include         https://encrypted.google.com/search?*
-// @include         https://encrypted.google.com/webhp?*
 // @compatible      firefox
 // @compatible      chrome
 // @compatible      opera
@@ -33,14 +31,14 @@ if (typeof GM === 'undefined') {
   }
 }
 
-function GM_addStyle (css) {
+function addStyle (css) {
   const style = document.createElement('style')
   style.type = 'text/css'
   style.textContent = css
   document.head.appendChild(style)
   return style
 }
-GM.addStyle = GM_addStyle
+GM.addStyle = addStyle
 
 // =============================================================================
 // Helper Functions
@@ -440,42 +438,44 @@ function createMenu (target) {
   const template = `
     <% const { showFlags, userRegions } = config; %>
 
-    <!-- Menu Dropdown Toggle -->
-    <div class="hdtb-mn-hd gm-region-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" role="button">
-      <div class="mn-hd-txt">
-        <% if (currentRegion) { %>
-          <% let { name, country } = currentRegion; %>
-          <% if (country && showFlags) { %> <span class="flag flag-<%- country %>"></span> <% } %>
-          <%- name %>
-        <% } else { %>
-          Regions
-        <% } %>
-      </div>
-      <span class="mn-dwn-arw"></span>
-    </div>
-
-    <!-- Menu Dropdown -->
-    <ul class="hdtbU hdtb-mn-c gm-region-menu-dropdown">
-      <!-- User Regions List -->
-      <% userRegions.map(getRegionByID).forEach(region => { %>
-        <% if (!region) { return; } %>
-        <% let { id, name, country } = region; %>
-        <% let isCurrent = currentRegion && currentRegion.id === id; %>
-        <% let url = getSearchURL(region); %>
-        <li class="hdtbItm <%- isCurrent ? 'hdtbSel' : '' %>">
-          <a class="q qs" href="<%- url %>">
-            <% if (country && showFlags) { %> <span class="flag flag-<%- country %>"></span> <% } %>
+    <div class="rIbAWc hide-focus-ring">
+      <!-- Menu Dropdown Toggle -->
+      <div class="hdtb-mn-hd gm-region-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" data-gm-region-onclick="toggleMenu" role="button">
+        <div class="mn-hd-txt" data-gm-region-onclick="toggleMenu">
+          <% if (currentRegion) { %>
+            <% let { name, country } = currentRegion; %>
+            <% if (country && showFlags) { %> <span class="flag flag-<%- country %>" data-gm-region-onclick="toggleMenu"></span> <% } %>
             <%- name %>
-          </a>
-        </li>
-      <% }); %>
+          <% } else { %>
+            Regions
+          <% } %>
+        </div>
+        <span class="mn-dwn-arw"></span>
+      </div>
 
-      <!-- Configuration Modal Toggle -->
-      <li class="hdtbItm">
-        <div class="cdr_sep"></div>
-        <a class="q qs gm-region-menu-config" data-gm-region-onclick="showModal" title="Google Search Region">...</a>
-      </li>
-    </ul>
+      <!-- Menu Dropdown -->
+      <ul class="tFPnEd YD3ICb gm-region-menu-dropdown">
+        <!-- User Regions List -->
+        <% userRegions.map(getRegionByID).forEach(region => { %>
+          <% if (!region) { return; } %>
+          <% let { id, name, country } = region; %>
+          <% let isCurrent = currentRegion && currentRegion.id === id; %>
+          <% let url = getSearchURL(region); %>
+          <li class="hdtbItm <%- isCurrent ? 'hdtbSel' : '' %>">
+            <a class="q qs" href="<%- url %>">
+              <% if (country && showFlags) { %> <span class="flag flag-<%- country %>"></span> <% } %>
+              <%- name %>
+            </a>
+          </li>
+        <% }); %>
+
+        <!-- Configuration Modal Toggle -->
+        <li class="hdtbItm">
+          <div class="cdr_sep"></div>
+          <a class="q qs gm-region-menu-config" data-gm-region-onclick="showModal" title="Google Search Region">...</a>
+        </li>
+      </ul>
+    </div>
   `
   const html = renderTemplate(template, data)
 
@@ -594,6 +594,13 @@ function delegateEvents () {
     if (modal) { modal.style.display = 'none' }
   }
 
+  events.toggleMenu = function toggleMenu () {
+    const menu = $('.gm-region-menu-dropdown')
+    if (menu) {
+      menu.classList.toggle('gm-region-menu-dropdown-show')
+    }
+  }
+
   events.save = function save () {
     const modal = $('.gm-region-modal')
     const controls = $$('[data-gm-region-config]', modal)
@@ -632,12 +639,13 @@ function delegateEvents () {
  * @return {Promise<HTMLStyleElement>}
  */
 function addStyles () {
-  const style = GM_addStyle(`
+  const style = addStyle(`
     /*!
      * Region Menu Dropdown CSS
      */
     .hdtb-sel{font-weight:700}
-    .gm-region-menu-dropdown{max-height:80vh;overflow-y:auto}
+    .gm-region-menu-dropdown{display:none;position:absolute;max-height:80vh;overflow-y:auto}
+    .gm-region-menu-dropdown-show{display:block}
     .gm-region-menu-dropdown .hdtbItm.hdtbSel{padding:0}
     .gm-region-menu-dropdown .hdtbItm.hdtbSel a{background-color:transparent}
     .gm-region-menu-config{cursor:pointer}
@@ -745,7 +753,7 @@ function waitForPageReady () {
   return new Promise(resolve => {
     const observee = $('#hdtb')
     const observer = new MutationObserver(() => {
-      const target = $('.hdtb-mn-hd')
+      const target = $('g-popup')
       if (target) {
         resolve(target)
         observer.disconnect()
