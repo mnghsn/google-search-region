@@ -349,6 +349,13 @@ function delegateEvents () {
     if (modal) { modal.style.display = 'none' }
   }
 
+  events.toggleMenu = function toggleMenu () {
+    const menu = $('.gm-region-menu-dropdown')
+    if (menu) {
+      menu.classList.toggle('gm-region-menu-dropdown-show')
+    }
+  }
+
   events.save = function save () {
     const modal = $('.gm-region-modal')
     const controls = $$('[data-gm-region-config]', modal)
@@ -407,7 +414,7 @@ function waitForPageReady () {
   return new Promise(resolve => {
     const observee = $('#hdtb')
     const observer = new MutationObserver(() => {
-      const target = $('.hdtb-mn-hd')
+      const target = $('g-popup')
       if (target) {
         resolve(target)
         observer.disconnect()

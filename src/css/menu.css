@@ -7,8 +7,14 @@
 }
 
 .gm-region-menu-dropdown {
+  display: none;
+  position: absolute;
   max-height: 80vh;
   overflow-y: auto;
+}
+
+.gm-region-menu-dropdown-show {
+  display: block;
 }
 
 .gm-region-menu-dropdown .hdtbItm.hdtbSel {
