@@ -387,7 +387,7 @@ function delegateEvents () {
  * @return {Promise<HTMLStyleElement>}
  */
 function addStyles () {
-  const style = GM_addStyle(`
+  const style = addStyle(`
     $inline('css:menu,4')
     $inline('css:modal,4')
     $inline('css:flags,4')
