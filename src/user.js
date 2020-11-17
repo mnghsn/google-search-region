@@ -351,8 +351,14 @@ function delegateEvents () {
 
   events.toggleMenu = function toggleMenu () {
     const menu = $('.gm-region-menu-dropdown')
+    const toggle = $('.gm-region-menu-toggle')
     if (menu) {
-      menu.classList.toggle('gm-region-menu-dropdown-show')
+      if (menu.style.display === 'none') {
+        menu.style.display = 'block'
+        menu.style.left = toggle.getBoundingClientRect().left + 'px'
+      } else {
+        menu.style.display = 'none'
+      }
     }
   }
 
