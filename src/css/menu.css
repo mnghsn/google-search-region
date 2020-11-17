@@ -28,3 +28,7 @@
 .gm-region-menu-config {
   cursor: pointer;
 }
+
+.gm-region-menu-dropdown g-menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
