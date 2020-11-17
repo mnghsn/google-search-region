@@ -316,7 +316,7 @@ function createMenu (target) {
   `
   const html = renderTemplate(template, data)
 
-  target.insertAdjacentHTML('beforebegin', html)
+  target.insertAdjacentHTML('afterend', html)
 }
 
 /**
@@ -414,7 +414,7 @@ function waitForPageReady () {
   return new Promise(resolve => {
     const observee = $('#hdtb')
     const observer = new MutationObserver(() => {
-      const target = $('g-popup')
+      const target = $('#XJDHvf')
       if (target) {
         resolve(target)
         observer.disconnect()
