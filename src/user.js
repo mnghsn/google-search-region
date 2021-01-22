@@ -420,7 +420,7 @@ function waitForPageReady () {
   return new Promise(resolve => {
     const observee = $('#hdtb')
     const observer = new MutationObserver(() => {
-      const target = $('#XJDHvf')
+      const target = $('.hdtb-mn-cont > div:first-child')
       if (target) {
         resolve(target)
         observer.disconnect()
