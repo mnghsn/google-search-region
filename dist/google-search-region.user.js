@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Google Search Region
 // @namespace       jmln.tw
-// @version         0.2.5
+// @version         0.2.6
 // @description     A user script that lets you quickly switch Google search to different region.
 // @author          Jimmy Lin
 // @license         MIT
@@ -443,7 +443,7 @@ function createMenu (target) {
         <!-- Menu Dropdown Toggle -->
         <div class="rIbAWc hide-focus-ring" aria-haspopup="true" role="button" tabindex="0">
           <div class="hdtb-mn-hd gm-region-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" data-gm-region-onclick="toggleMenu">
-            <div class="mn-hd-txt" data-gm-region-onclick="toggleMenu">
+            <div class="mn-hd-txt KTBKoe" data-gm-region-onclick="toggleMenu">
               <% if (currentRegion) { %>
                 <% let { name, country } = currentRegion; %>
                 <% if (country && showFlags) { %> <span class="flag flag-<%- country %>" data-gm-region-onclick="toggleMenu"></span> <% } %>
@@ -767,7 +767,7 @@ function waitForPageReady () {
   return new Promise(resolve => {
     const observee = $('#hdtb')
     const observer = new MutationObserver(() => {
-      const target = $('#XJDHvf')
+      const target = $('.hdtb-mn-cont > div:first-child')
       if (target) {
         resolve(target)
         observer.disconnect()

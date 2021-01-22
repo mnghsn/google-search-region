@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Google Search Region
 // @namespace       jmln.tw
-// @version         0.2.5
+// @version         0.2.6
 // @description     A user script that lets you quickly switch Google search to different region.
 // @author          Jimmy Lin
 // @license         MIT
