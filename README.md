@@ -1,7 +1,5 @@
 # Google Search Region
 
-[![Build Status](https://travis-ci.org/jmlntw/google-search-region.svg?branch=master)](https://travis-ci.org/jmlntw/google-search-region)
-
 A user script that lets you quickly switch Google search to different region.
 
 ## Features
