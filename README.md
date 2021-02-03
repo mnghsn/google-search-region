@@ -25,6 +25,10 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 
 ## Changelog
 
+* **v0.2.7** (2021-02-03)
+  * Update for latest Google Search layout.
+* **v0.2.6** (2021-01-22)
+  * Update for latest Google Search layout.
 * **v0.2.5** (2020-11-17)
   * Fix various issues on the latest Google layout.
 * **v0.2.4** (2020-10-02)
