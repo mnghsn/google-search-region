@@ -1,6 +1,6 @@
 {
   "name": "google-search-region",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "description": "A user script that lets you quickly switch Google search to different region.",
   "homepage": "https://github.com/jmlntw/google-search-region",
