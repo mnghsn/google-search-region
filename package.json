@@ -30,6 +30,6 @@
     "indent-string": "^5.0.0",
     "inline-js": "^0.8.0",
     "inline-js-core": "^0.5.0",
-    "stringify-object": "^3.3.0"
+    "stringify-object": "^4.0.0"
   }
 }
