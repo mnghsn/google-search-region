@@ -25,6 +25,9 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 
 ## Changelog
 
+* **v0.2.9** (2022-05-21)
+  * Fix the region menu position.
+  * Fix the dropdown arrow icon display.
 * **v0.2.8** (2021-02-21)
   * Update for latest Google Search layout.
 * **v0.2.7** (2021-02-03)
