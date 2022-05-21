@@ -30,7 +30,7 @@ module.exports = {
     {
       name: 'indent',
       transform (file, content, size = '2', indent = ' ') {
-        const indentString = require('indent-string')
+        const indentString = (...args) => import('indent-string').then(({default: indentString}) => indentString(...args))
         return indentString(content, parseInt(size, 10), { indent: indent })
       }
     },
@@ -44,7 +44,7 @@ module.exports = {
     {
       name: 'stringify',
       transform (file, content, maxLength = '80') {
-        const stringifyObject = require('stringify-object')
+        const stringifyObject = (...args) => import('stringify-object').then(({default: stringifyObject}) => stringifyObject(...args))
         return stringifyObject(JSON.parse(content), {
           indent: '  ',
           singleQuotes: true,
