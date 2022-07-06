@@ -25,6 +25,10 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 
 ## Changelog
 
+* **v0.3.0** (2022-07-06)
+  * Update URL matching rules.
+  * Update metadata.
+  * Flag as compatible with Microsoft Edge on Greasy Fork.
 * **v0.2.9** (2022-05-21)
   * Fix the region menu position.
   * Fix the dropdown arrow icon display.
