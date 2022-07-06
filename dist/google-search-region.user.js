@@ -1,16 +1,17 @@
 // ==UserScript==
 // @name            Google Search Region
 // @namespace       jmln.tw
-// @version         0.2.9
+// @version         0.3.0
 // @description     A user script that lets you quickly switch Google search to different region.
 // @author          Jimmy Lin
 // @license         MIT
-// @homepage        https://github.com/jmlntw/google-search-region
+// @homepageURL     https://github.com/jmlntw/google-search-region
 // @supportURL      https://github.com/jmlntw/google-search-region/issues
-// @include         https://www.google.*/search?*
-// @include         https://www.google.*/webhp?*
+// @include         /^https:\/\/(?:ipv4|ipv6|www)\.google\.(?:[a-z\.]+)\/search\?(?:.+&)?q=[^&]+(?:&.+)?$/
+// @exclude         /^https:\/\/(?:ipv4|ipv6|www)\.google\.(?:[a-z\.]+)\/search\?(?:.+&)?tbm=lcl(?:&.+)?$/
 // @compatible      firefox
 // @compatible      chrome
+// @compatible      edge
 // @compatible      opera
 // @run-at          document-end
 // @grant           GM_getValue
@@ -666,7 +667,7 @@ function addStyles () {
     /*!
      * Configuration Modal CSS
      */
-    .gm-region-modal{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background-color:rgba(255,255,255,.75)}
+    .gm-region-modal{display:flex;align-items:center;justify-content:center;position:fixed;z-index:10000;top:0;left:0;width:100%;height:100%;background-color:rgba(255,255,255,.75);color:#4d5156}
     .gm-region-modal-dialog{display:block;width:800px;max-width:80vw;max-height:80vh;overflow:auto;margin:32px;padding:32px;border:1px solid #c5c5c5;box-shadow:0 4px 16px rgba(0,0,0,.2);background-color:#fff;font-size:13px}
     .gm-region-modal-header{display:flex;justify-content:space-between}
     .gm-region-modal-footer{text-align:right}
