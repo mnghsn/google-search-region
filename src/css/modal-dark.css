@@ -1,0 +1,26 @@
+/*!
+ * Configuration Modal CSS (Dark Theme)
+ */
+
+.gm-region-modal {
+  background-color: rgba(32,33,36,0.75);
+  color: #bdc1c6;
+}
+
+.gm-region-modal-dialog {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.8);
+  border: 1px solid #313437;
+  background: #202124;
+}
+
+.gm-region-modal-close {
+  filter: invert(100%);
+}
+
+.gm-region-control-indicator {
+  border: 1px solid #5f6368;
+}
+
+.gm-region-control-indicator::after {
+  filter: invert(100%);
+}

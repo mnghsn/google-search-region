@@ -400,13 +400,23 @@ function delegateEvents () {
  * @return {Promise<HTMLStyleElement>}
  */
 function addStyles () {
-  const style = addStyle(`
+  addStyle(`
     $inline('css:menu,4')
     $inline('css:modal,4')
     $inline('css:flags,4')
   `)
 
-  return Promise.resolve(style)
+  if (
+    window
+      .getComputedStyle(document.body)
+      .getPropertyValue('background-color') !== 'rgb(255, 255, 255)'
+  ) {
+    addStyle(`
+      $inline('css:modal-dark,4')
+    `)
+  }
+
+  return Promise.resolve(true)
 }
 
 // =============================================================================
