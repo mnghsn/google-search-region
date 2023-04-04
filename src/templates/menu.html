@@ -3,7 +3,7 @@
 <span>
   <g-popup>
     <!-- Menu Dropdown Toggle -->
-    <div class="rIbAWc hide-focus-ring" aria-haspopup="true" role="button" tabindex="0">
+    <div class="CcNe6e hide-focus-ring" aria-haspopup="true" role="button" tabindex="0">
       <div class="hdtb-mn-hd gm-region-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" data-gm-region-onclick="toggleMenu">
         <div class="mn-hd-txt KTBKoe" data-gm-region-onclick="toggleMenu">
           <% if (currentRegion) { %>
@@ -18,16 +18,16 @@
       </div>
     </div>
     <!-- Menu Dropdown -->
-    <div class="EwsJzb sAKBe gm-region-menu-dropdown" style="display: none">
-      <g-menu class="cF4V5c PVU5bf Tlae9d gLSAk" role="menu" tabindex="-1">
+    <div class="UjBGL pkWBse iRQHZe gm-region-menu-dropdown" style="display: none">
+      <g-menu class="cF4V5c Tlae9d yTik0 wplJBd PBn44e" role="menu" tabindex="-1">
         <!-- User Regions List -->
         <% userRegions.map(getRegionByID).forEach(region => { %>
           <% if (!region) { return; } %>
           <% let { id, name, country } = region; %>
           <% let isCurrent = currentRegion && currentRegion.id === id; %>
           <% let url = getSearchURL(region); %>
-          <g-menu-item class="ErsxPb hide-focus-ring <%- isCurrent ? 'nvELY' : '' %>">
-            <div class="znKVS tnhqA">
+          <g-menu-item class="EpPYLd hide-focus-ring <%- isCurrent ? 'nvELY' : '' %>">
+            <div class="YpcDnf OSrXXb HG1dvd">
               <a href="<%- url %>" role="menuitem">
                 <% if (country && showFlags) { %> <span class="flag flag-<%- country %>"></span> <% } %>
                 <%- name %>
@@ -37,7 +37,7 @@
         <% }); %>
         <!-- Configuration Modal Toggle -->
         <g-menu-item class="ErsxPb hide-focus-ring">
-          <div class=""znKVS tnhqA>
+          <div class="znKVS tnhqA">
             <a class="gm-region-menu-config" data-gm-region-onclick="showModal" title="Google Search Region">...</a>
           </div>
         </g-menu-item>
