@@ -25,6 +25,9 @@ Install a user script manager such as [Greasemonkey](http://www.greasespot.net/)
 
 ## Changelog
 
+* **v0.4.0** (2023-04-06)
+  * Update menu styles.
+  * Add support for dark theme.
 * **v0.3.0** (2022-07-06)
   * Update URL matching rules.
   * Update metadata.
