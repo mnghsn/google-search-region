@@ -25,8 +25,8 @@
     "test": "npm run test:lint && npm run test:build"
   },
   "devDependencies": {
-    "clean-css": "^5.1.5",
-    "eslint": "^7.32.0",
+    "clean-css": "^5.3.0",
+    "eslint": "^8.37.0",
     "indent-string": "^5.0.0",
     "inline-js": "^0.8.0",
     "inline-js-core": "^0.5.0",
