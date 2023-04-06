@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Google Search Region
 // @namespace       jmln.tw
-// @version         0.3.0
+// @version         0.4.0
 // @description     A user script that lets you quickly switch Google search to different region.
 // @author          Jimmy Lin
 // @license         MIT
@@ -442,7 +442,7 @@ function createMenu (target) {
     <span>
       <g-popup>
         <!-- Menu Dropdown Toggle -->
-        <div class="rIbAWc hide-focus-ring" aria-haspopup="true" role="button" tabindex="0">
+        <div class="CcNe6e hide-focus-ring" aria-haspopup="true" role="button" tabindex="0">
           <div class="hdtb-mn-hd gm-region-menu-toggle <%- currentRegion ? 'hdtb-sel' : '' %>" data-gm-region-onclick="toggleMenu">
             <div class="mn-hd-txt KTBKoe" data-gm-region-onclick="toggleMenu">
               <% if (currentRegion) { %>
@@ -457,16 +457,16 @@ function createMenu (target) {
           </div>
         </div>
         <!-- Menu Dropdown -->
-        <div class="EwsJzb sAKBe gm-region-menu-dropdown" style="display: none">
-          <g-menu class="cF4V5c PVU5bf Tlae9d gLSAk" role="menu" tabindex="-1">
+        <div class="UjBGL pkWBse iRQHZe gm-region-menu-dropdown" style="display: none">
+          <g-menu class="cF4V5c Tlae9d yTik0 wplJBd PBn44e" role="menu" tabindex="-1">
             <!-- User Regions List -->
             <% userRegions.map(getRegionByID).forEach(region => { %>
               <% if (!region) { return; } %>
               <% let { id, name, country } = region; %>
               <% let isCurrent = currentRegion && currentRegion.id === id; %>
               <% let url = getSearchURL(region); %>
-              <g-menu-item class="ErsxPb hide-focus-ring <%- isCurrent ? 'nvELY' : '' %>">
-                <div class="znKVS tnhqA">
+              <g-menu-item class="EpPYLd hide-focus-ring <%- isCurrent ? 'nvELY' : '' %>">
+                <div class="YpcDnf OSrXXb HG1dvd">
                   <a href="<%- url %>" role="menuitem">
                     <% if (country && showFlags) { %> <span class="flag flag-<%- country %>"></span> <% } %>
                     <%- name %>
@@ -476,7 +476,7 @@ function createMenu (target) {
             <% }); %>
             <!-- Configuration Modal Toggle -->
             <g-menu-item class="ErsxPb hide-focus-ring">
-              <div class=""znKVS tnhqA>
+              <div class="znKVS tnhqA">
                 <a class="gm-region-menu-config" data-gm-region-onclick="showModal" title="Google Search Region">...</a>
               </div>
             </g-menu-item>
@@ -653,7 +653,7 @@ function delegateEvents () {
  * @return {Promise<HTMLStyleElement>}
  */
 function addStyles () {
-  const style = addStyle(`
+  addStyle(`
     /*!
      * Region Menu Dropdown CSS
      */
@@ -754,7 +754,24 @@ function addStyles () {
     .flag.flag-za{background-position:-96px -66px}
   `)
 
-  return Promise.resolve(style)
+  if (
+    window
+      .getComputedStyle(document.body)
+      .getPropertyValue('background-color') !== 'rgb(255, 255, 255)'
+  ) {
+    addStyle(`
+      /*!
+     * Configuration Modal CSS (Dark Theme)
+     */
+    .gm-region-modal{background-color:rgba(32,33,36,.75);color:#bdc1c6}
+    .gm-region-modal-dialog{box-shadow:0 4px 16px rgba(0,0,0,.8);border:1px solid #313437;background:#202124}
+    .gm-region-modal-close{filter:invert(100%)}
+    .gm-region-control-indicator{border:1px solid #5f6368}
+    .gm-region-control-indicator::after{filter:invert(100%)}
+    `)
+  }
+
+  return Promise.resolve(true)
 }
 
 // =============================================================================
