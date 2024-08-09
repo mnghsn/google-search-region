@@ -6,6 +6,10 @@
   font-weight: bold;
 }
 
+.gm-region-menu-toggle {
+  margin-inline-end: 32px;
+}
+
 .gm-region-menu-dropdown {
   display: none;
   position: absolute;
