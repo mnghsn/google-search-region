@@ -15,6 +15,7 @@
   position: absolute;
   max-height: 80vh;
   overflow-y: auto;
+  z-index: 200;
 }
 
 .gm-region-menu-dropdown-show {
