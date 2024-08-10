@@ -1,5 +1,10 @@
 # Changelog
 
+## **v0.4.1** (2024-08-10)
+
+- Fix the menu toggle position.
+- Fix the menu dropdown menu not displayed.
+
 ## **v0.4.0** (2023-04-06)
 
 - Update menu styles.
