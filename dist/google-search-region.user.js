@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Google Search Region
 // @namespace       jmln.tw
-// @version         0.4.0
+// @version         0.4.1
 // @description     A user script that lets you quickly switch Google search to different region.
 // @author          Jimmy Lin
 // @license         MIT
@@ -658,7 +658,8 @@ function addStyles () {
      * Region Menu Dropdown CSS
      */
     .hdtb-sel{font-weight:700}
-    .gm-region-menu-dropdown{display:none;position:absolute;max-height:80vh;overflow-y:auto}
+    .gm-region-menu-toggle{margin-inline-end:32px}
+    .gm-region-menu-dropdown{display:none;position:absolute;max-height:80vh;overflow-y:auto;z-index:200}
     .gm-region-menu-dropdown-show{display:block}
     .gm-region-menu-dropdown .hdtbItm.hdtbSel{padding:0}
     .gm-region-menu-dropdown .hdtbItm.hdtbSel a{background-color:transparent}
